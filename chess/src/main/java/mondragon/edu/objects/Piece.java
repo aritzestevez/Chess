@@ -21,7 +21,7 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public abstract List<Square> getLegalMoves(ChessBoard b);
+    // public boolean legalMovements (Position pos);
 
     @Override
     public String toString() {
