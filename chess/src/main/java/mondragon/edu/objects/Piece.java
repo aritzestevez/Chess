@@ -22,10 +22,6 @@ public abstract class Piece {
     }
 
 
-    public boolean validMovement(){
-
-        return true;
-    }
 
     @Override
     public String toString() {
