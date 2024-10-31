@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Bishop extends Piece {
 
-    public Bishop(int id, Position position, Color color) {
-        super(id, position, color);
+    public Bishop(Position position, Color color) {
+        super(position, color);
     }
     
 }
