@@ -39,7 +39,5 @@ public abstract class piece {
         // TODO Auto-generated method stub
         return super.toString();
     }
-
-
-
+    
 }
