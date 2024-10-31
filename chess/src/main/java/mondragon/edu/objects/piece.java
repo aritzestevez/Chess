@@ -1,14 +1,14 @@
 package mondragon.edu.objects;
 
-public abstract class piece {
-
-    int id;
+public abstract class Piece {
+    
     int x;
     int y;
+    int id;
     Color color;
 
     
-    public piece(int id, int x, int y, Color color) {
+    public Piece(int id, int x, int y, Color color) {
         this.id = id;
         this.x = x;
         this.y = y;
