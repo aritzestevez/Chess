@@ -33,4 +33,16 @@ public abstract class Piece {
         return super.toString();
     }
 
+
+    public Position getPosition() {
+        return position;
+    }
+
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+
+
 }
