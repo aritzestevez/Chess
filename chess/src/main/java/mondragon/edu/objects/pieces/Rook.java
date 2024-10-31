@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Rook extends Piece {
 
-    public Rook (int id, Position pos, Color color) {
-        super(id, pos, color);
+    public Rook (Position pos, Color color) {
+        super(pos, color);
     }
     
 }
