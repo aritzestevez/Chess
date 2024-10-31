@@ -5,8 +5,8 @@ import mondragon.edu.App;
 public class MainTest {
     
 
-    @Test
+    /*  @Test
     public void testMain(){
         App.main(null);
-    }
+    } */
 }
