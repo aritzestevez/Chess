@@ -8,7 +8,7 @@ public abstract class Piece {
     Color color;
 
     
-    public Piece(Position position, Color color) {
+    protected Piece(Position position, Color color) {
         this.position = position;
         this.color = color;
     }
@@ -19,6 +19,12 @@ public abstract class Piece {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+
+    public boolean validMovement(){
+
+        return true;
     }
 
     @Override
