@@ -3,7 +3,7 @@ package mondragon.edu;
 public class positionTest {
     
 
-    @Before
+    // @Before
     private void init(){
 
     }
