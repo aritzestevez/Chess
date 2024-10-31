@@ -8,9 +8,9 @@ public class Queen extends Piece{
     int id;
     Position position;
     Color color;
-    
-    public Queen(int id, int x, int y, Color color) {
-        super(id, x, y, color);
+
+    public Queen(int id, Position pos, Color color) {
+        super(id, pos, color);
     }
     
 }
