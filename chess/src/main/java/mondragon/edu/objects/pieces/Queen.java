@@ -18,10 +18,4 @@ public class Queen extends Piece{
         
     }
 
-    // @Override
-    // public List<Square> getLegalMoves(ChessBoard b) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'getLegalMoves'");
-    // };
-
 }

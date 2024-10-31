@@ -21,8 +21,6 @@ public abstract class Piece {
         this.color = color;
     }
 
-    // public boolean legalMovements (Position pos);
-
     @Override
     public String toString() {
         // TODO Auto-generated method stub
