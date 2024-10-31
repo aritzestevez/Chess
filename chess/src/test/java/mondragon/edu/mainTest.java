@@ -1,8 +1,8 @@
 package mondragon.edu;
 
+import junit.framework.Test;
 
 
-@Test
 public class mainTest {
     
 }
