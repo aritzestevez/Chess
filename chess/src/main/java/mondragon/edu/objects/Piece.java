@@ -34,6 +34,13 @@ public abstract class Piece {
         this.color = color;
     }
 
+
+    public boolean validMovement(Position pos){
+
+        Boolean isvalid = true;
+        return isvalid;
+    }
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub
