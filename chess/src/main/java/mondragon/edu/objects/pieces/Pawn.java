@@ -6,12 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Pawn extends Piece {
 
-    int id;
-    Position position;
-    Color color;
-
-    public Pawn(int id, Position position, Color color) {
-        super(id,position, color);
+    public Pawn(Position position, Color color) {
+        super(position, color);
     }
 
 }

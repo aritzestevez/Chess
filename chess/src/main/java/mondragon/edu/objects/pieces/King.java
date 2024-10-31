@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class King extends Piece {
 
-    public King(int id, Position pos, Color color) {
-        super(id, pos, color);
+    public King(Position pos, Color color) {
+        super(pos, color);
     }
     
 }

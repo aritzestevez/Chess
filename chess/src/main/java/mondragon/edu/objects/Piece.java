@@ -3,12 +3,10 @@ package mondragon.edu.objects;
 public abstract class Piece {
     
     Position position;
-    int id;
     Color color;
 
     
-    public Piece(int id, Position position, Color color) {
-        this.id = id;
+    public Piece(Position position, Color color) {
         this.position = position;
         this.color = color;
     }

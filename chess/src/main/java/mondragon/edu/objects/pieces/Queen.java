@@ -5,12 +5,9 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 
 public class Queen extends Piece{
-    int id;
-    Position position;
-    Color color;
 
-    public Queen(int id, Position pos, Color color) {
-        super(id, pos, color);
+    public Queen(Position pos, Color color) {
+        super(pos, color);
     }
     
 }
