@@ -10,4 +10,11 @@ public class Pawn extends Piece {
         super(position, color);
     }
 
+    @Override
+    public boolean validMovement(Position pos) {
+        // TODO Auto-generated method stub
+        return super.validMovement(pos);
+    }
+
+    
 }
