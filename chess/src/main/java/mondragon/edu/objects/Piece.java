@@ -6,7 +6,6 @@ public abstract class Piece {
     int id;
     Color color;
 
-    
     public Piece(int id, Position position, Color color) {
         this.id = id;
         this.position = position;
