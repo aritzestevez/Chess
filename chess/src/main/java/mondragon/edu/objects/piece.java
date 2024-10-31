@@ -1,6 +1,6 @@
 package mondragon.edu.objects;
 
-public abstract class piece {
+public abstract class Piece {
     
     int x;
     int y;
