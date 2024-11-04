@@ -11,17 +11,23 @@ public abstract class Piece {
         this.color = color;
     }
 
-
     public Color getColor() {
         return color;
     }
+
     public void setColor(Color color) {
         this.color = color;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     public boolean validMovement(Position pos){
-
         Boolean isvalid = true;
         return isvalid;
     }
@@ -31,7 +37,4 @@ public abstract class Piece {
         // TODO Auto-generated method stub
         return super.toString();
     }
-
-
-
 }

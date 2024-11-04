@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Piece;
+import mondragon.edu.objects.Position;
 
 /**
  * Hello world!
@@ -17,17 +18,13 @@ public class App
 
 	public App() {
 		input = new Scanner(System.in);
+		chessBoard = new ChessBoard();
 	}
 
     public int menu() {
 		int option;
 		System.out.println("1.- Show chessboard");
-		System.out.println("2.- Move pawn");
-		System.out.println("3.- Move rook");
-		System.out.println("4.- Move bishop");
-		System.out.println("5.- Move knight");
-		System.out.println("6.- Move king");
-		System.out.println("7.- Move queen");
+		System.out.println("2.- Move a piece");
 		System.out.println("0.- Exit");
 		System.out.print("Choose an option: ");
 		option = input.nextInt();
@@ -38,15 +35,15 @@ public class App
 	public void run() {
 		int option;
 		Piece piece;
-		
+
 		do {
 			option = menu();
 			switch (option) {
 				case 1:
 					showChessboard(chessBoard);
 					break;
-				case 2, 3, 4, 5, 6, 7:
-					piece = choosePiece(option);
+				case 2:
+					piece = choosePiece();
 					movePiece(piece);
 					break;
 				case 0:
@@ -58,17 +55,37 @@ public class App
 	}
 
     private void movePiece(Piece piece) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'movePiece'");
+		System.out.print("New row position: ");
+		int row = input.nextInt();
+
+		System.out.print("New col position: ");
+		int col = input.nextInt();
+
+		Position pos = new Position(row, col);
+
+		if (piece.validMovement(pos)) {
+			piece.setPosition(pos);
+			System.out.println("New piece posiiton: " + piece.getPosition());
+		}
+		else {
+			System.out.println("Invalid position");
+		}
 	}
 
-	private Piece choosePiece(int piece) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'choosePiece'");
+	private Piece choosePiece() {
+
+		Piece[][] cb = chessBoard.getChessboard();
+
+		System.out.print("Piece row position: ");
+		int row = input.nextInt();
+
+		System.out.print("Piece col position: ");
+		int col = input.nextInt();
+
+		return cb[row][col];
 	}
 
 	private void showChessboard(ChessBoard chessBoard) {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'showChessboard'");
 	}
 
