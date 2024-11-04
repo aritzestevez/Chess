@@ -1,11 +1,9 @@
 package mondragon.edu.objects;
 
-import java.util.List;
-
 public abstract class Piece {
 
-    public Position position;
-    public Color color;
+    protected  Position position;
+    protected Color color;
 
     
     protected Piece(Position position, Color color) {
