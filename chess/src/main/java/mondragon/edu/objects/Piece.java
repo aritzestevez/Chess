@@ -6,7 +6,7 @@ public abstract class Piece {
     Color color;
 
     
-    public Piece(Position position, Color color) {
+    protected Piece(Position position, Color color) {
         this.position = position;
         this.color = color;
     }
@@ -37,4 +37,7 @@ public abstract class Piece {
         // TODO Auto-generated method stub
         return super.toString();
     }
+
+
+
 }
