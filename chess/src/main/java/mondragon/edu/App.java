@@ -64,8 +64,16 @@ public class App
 		Position pos = new Position(row, col);
 
 		if (piece.isValidMove(pos,chessBoard.getChessboard())) {
+			// Update chessboard
+			Position currentPos = piece.getPosition();
+			Piece[][] cb = chessBoard.getChessboard();
+			cb[currentPos.getX()][currentPos.getY()] = null;
+			cb[row][col] = piece;
+
+			// Update piece
 			piece.setPosition(pos);
-			System.out.println("New piece posiiton: " + piece.getPosition());
+			System.out.println("New piece position: (" + piece.getPosition().getX() + ", " + piece.getPosition().getY() + ")");
+
 		}
 		else {
 			System.out.println("Invalid position");
