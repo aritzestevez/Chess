@@ -1,5 +1,8 @@
 package mondragon.edu.objects.pieces;
 
+import java.util.List;
+
+import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
@@ -15,5 +18,6 @@ public class King extends Piece {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isValidMove'");
     }
+
     
 }

@@ -42,5 +42,9 @@ public class ChessBoard {
             board[1][i] = new Pawn(new Position(1, i), Color.BLACK);
             board[6][i] = new Pawn(new Position(6, i),Color.WHITE);
         }*/
-    } 
+    }
+
+    public Piece[][] getChessboard() {
+        return board;
+    }
 }
