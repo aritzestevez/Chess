@@ -60,13 +60,13 @@ public class App
 
 		Position pos = new Position(row, col);
 
-		/*if (piece.isValidMove(pos)) {
+		if (piece.isValidMove(pos,chessBoard.getChessboard())) {
 			piece.setPosition(pos);
 			System.out.println("New piece posiiton: " + piece.getPosition());
 		}
 		else {
 			System.out.println("Invalid position");
-		}*/
+		}
 	}
 
 	private Piece choosePiece() {
