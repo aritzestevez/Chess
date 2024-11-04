@@ -10,5 +10,6 @@ public class Pawn extends Piece {
         super(position, color);
     }
 
+
     
 }

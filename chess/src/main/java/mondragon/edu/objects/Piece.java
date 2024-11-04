@@ -1,9 +1,11 @@
 package mondragon.edu.objects;
 
+import java.util.List;
+
 public abstract class Piece {
-    
-    Position position;
-    Color color;
+
+    protected Position position;
+    protected Color color;
 
     
     protected Piece(Position position, Color color) {
@@ -31,13 +33,13 @@ public abstract class Piece {
         Boolean isvalid = true;
         return isvalid;
     }
-
+    
+    public abstract boolean isValidMove(Position newPosition, Piece[][] board);
+    
     @Override
     public String toString() {
         // TODO Auto-generated method stub
         return super.toString();
     }
-
-
-
+    
 }
