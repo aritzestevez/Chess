@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Bishop extends Piece {
 
-    final static String BLACKBISHOP = "\u265D";
-    final static String WHITEBISHOP = "\u2657";
+    static final String BLACKBISHOP = "\u265D";
+    static final String WHITEBISHOP = "\u2657";
     
     public Bishop(Position position, Color color) {
         super(position, color);

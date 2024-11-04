@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Queen extends Piece {
 
-    final static String BLACKQUEEN = "\u265B";
-    final static String WHITEQUEEN = "\u2655";
+    static final String BLACKQUEEN = "\u265B";
+    static final String WHITEQUEEN = "\u2655";
 
     public Queen(Position pos, Color color) {
         super(pos, color);

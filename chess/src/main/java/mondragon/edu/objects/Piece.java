@@ -2,8 +2,8 @@ package mondragon.edu.objects;
 
 public abstract class Piece {
 
-    protected  Position position;
-    protected Color color;
+    public Position position;
+    public Color color;
 
     
     protected Piece(Position position, Color color) {

@@ -5,8 +5,8 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 
 public class King extends Piece {
-    final static String BLACKKING = "\u265A";
-    final static String WHITEKING = "\u2654";
+    static final String BLACKKING = "\u265A";
+    static final String WHITEKING = "\u2654";
 
     public King(Position pos, Color color) {
         super(pos, color);
