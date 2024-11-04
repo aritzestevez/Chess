@@ -66,6 +66,7 @@ public class App
 		if (piece.isValidMove(pos,chessBoard.getChessboard())) {
 			// Update chessboard
 			Position currentPos = piece.getPosition();
+			
 			Piece[][] cb = chessBoard.getChessboard();
 			cb[currentPos.getX()][currentPos.getY()] = null;
 			cb[row][col] = piece;
