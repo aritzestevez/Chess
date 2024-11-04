@@ -1,11 +1,15 @@
 package mondragon.edu;
 
 import static org.junit.Assert.assertEquals;
+
+import java.lang.reflect.Field;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
+import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 import mondragon.edu.objects.pieces.Bishop;
 import mondragon.edu.objects.pieces.King;
@@ -32,12 +36,22 @@ public class PiecesTest {
 
     }
     @Test
-    public void testBishopValidMovement(){
+    public void testBishopValidMovementFalse(){
         Bishop bishop = new Bishop(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
         bishop.isValidMove(position,chessBoard.getChessboard());
         assertEquals(false, bishop.isValidMove(position, chessBoard.getChessboard()));
     }
+    /* @Test
+    public void testBishopValidMovementTrue() throws Exception{
+        Position newPos = new Position(2, 4);
+        ChessBoard chessBoard = new ChessBoard();
+        Field boardField = ChessBoard.class.getDeclaredField("board");
+        boardField.setAccessible(true);
+        Piece[][] board =  (Piece[][]) boardField.get(chessBoard);
+        Bishop bishop = (Bishop) board[0][2];
+        assertEquals(true, bishop.isValidMove(newPos, board));
+    } */
     @Test
     public void testKingGetSet(){
         King king = new King(position, Color.BLACK);
@@ -45,10 +59,9 @@ public class PiecesTest {
         assertEquals(Color.BLACK,king.getColor());
     }
     @Test
-    public void testKingValidMovement(){
+    public void testKingValidMovementFalse(){
         King king = new King(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
-        king.isValidMove(position,chessBoard.getChessboard());
         assertEquals(false, king.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test
@@ -58,10 +71,9 @@ public class PiecesTest {
         assertEquals(Color.BLACK,knight.getColor());
     }
     @Test
-    public void testKnightValidMovement(){
+    public void testKnightValidMovementFalse(){
         Knight knight = new Knight(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
-        knight.isValidMove(position,chessBoard.getChessboard());
         assertEquals(false, knight.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test
@@ -71,10 +83,9 @@ public class PiecesTest {
         assertEquals(Color.BLACK,pawn.getColor());
     }
     @Test
-    public void testPawnValidMovement(){
+    public void testPawnValidMovementFalse(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
-        pawn.isValidMove(position,chessBoard.getChessboard());
         assertEquals(false, pawn.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test
@@ -84,10 +95,9 @@ public class PiecesTest {
         assertEquals(Color.BLACK,queen.getColor());
     }
     @Test
-    public void testQueenValidMovement(){
+    public void testQueenValidMovementFalse(){
         Queen queen = new Queen(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
-        queen.isValidMove(position,chessBoard.getChessboard());
         assertEquals(false, queen.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test
@@ -98,10 +108,9 @@ public class PiecesTest {
         assertEquals(Color.BLACK,rook.getColor());
     }
     @Test
-    public void testRookValidMovement(){
+    public void testRookValidMovementFalse(){
         Rook rook = new Rook(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
-        rook.isValidMove(position,chessBoard.getChessboard());
         assertEquals(false, rook.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test
