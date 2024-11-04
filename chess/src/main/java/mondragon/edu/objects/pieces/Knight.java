@@ -6,6 +6,9 @@ import mondragon.edu.objects.Position;
 
 public class Knight extends Piece {
 
+    static final String BLACKKNIGHT = "\u265E";
+    static final String WHITEKNIGHT = "\u2658";
+
     public Knight(Position position, Color color) {
         super(position, color);
     }
@@ -33,6 +36,15 @@ public class Knight extends Piece {
             return true; // The square is empty, move is valid
         } else {
             return targetPiece.getColor() != this.getColor(); // Can capture if it's an opponent's piece
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (this.color == Color.BLACK){
+            return BLACKKNIGHT;
+        }else{
+            return WHITEKNIGHT;
         }
     }
 
