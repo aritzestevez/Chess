@@ -15,7 +15,6 @@ public class ChessBoard {
     }
 
     private void initializePieces() {
-/* 
         this.board = new Piece[8][8];
         board[0][0] = new Rook(new Position(0, 0),Color.BLACK);
         board[0][7] = new Rook(new Position(0, 7), Color.BLACK);
@@ -41,7 +40,7 @@ public class ChessBoard {
         for (int i = 0; i < 8; i++) {
             board[1][i] = new Pawn(new Position(1, i), Color.BLACK);
             board[6][i] = new Pawn(new Position(6, i),Color.WHITE);
-        }*/
+        }
     }
 
     public Piece[][] getChessboard() {
