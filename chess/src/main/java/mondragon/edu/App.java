@@ -15,7 +15,6 @@ public class App
 	public App() {
 		input = new Scanner(System.in);
 		chessBoard = new ChessBoard();
-		chessBoard
 	}
 
 
