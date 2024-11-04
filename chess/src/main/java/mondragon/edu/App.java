@@ -57,10 +57,10 @@ public class App
 
 		System.out.print("New col position: ");
 		int col = input.nextInt();
-
+		/*
 		Position pos = new Position(row, col);
 
-		/*if (piece.isValidMove(pos)) {
+		if (piece.isValidMove(pos)) {
 			piece.setPosition(pos);
 			System.out.println("New piece posiiton: " + piece.getPosition());
 		}
