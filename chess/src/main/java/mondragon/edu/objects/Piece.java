@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class Piece {
 
-    Position position;
-    Color color;
+    protected Position position;
+    protected Color color;
 
     
     protected Piece(Position position, Color color) {
@@ -39,6 +39,7 @@ public abstract class Piece {
         this.position = position;
     }
 
+    public abstract boolean isValidMove(Position newPosition, Piece[][] board);
 
 
 }
