@@ -14,5 +14,6 @@ public class Knight extends Piece{
     public boolean isValidMove(Position newPosition, Piece[][] board) {
        return false;
     }
+
     
 }
