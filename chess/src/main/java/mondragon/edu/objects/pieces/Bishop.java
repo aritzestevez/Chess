@@ -35,10 +35,8 @@ public class Bishop extends Piece {
 
         // Check the destination square for capturing or moving to an empty square
         Piece destinationPiece = board[newPosition.getX()][newPosition.getY()];
-        if (destinationPiece == null) {
-            return true; // The destination is empty, move is valid.
-        } else if (destinationPiece.getColor() != this.getColor()) {
-            return true; // The destination has an opponent's piece, capture is valid.
+        if (destinationPiece == null || destinationPiece.getColor() != this.getColor()) {
+            return true; 
         }
 
         return false; // The destination has a piece of the same color, move is invalid.
