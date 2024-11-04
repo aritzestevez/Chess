@@ -41,7 +41,14 @@ public class Pawn extends Piece {
                 board[newPosition.getX()][newPosition.getY()].color != this.color) {
             return true; // Capture an opponent's piece
         }
-
         return false;
+    }
+    @Override
+    public String toString() {
+        if (this.color == Color.BLACK){
+            return BLACKPAWN;
+        }else{
+            return WHITEPAWN;
+        }
     }
 }
