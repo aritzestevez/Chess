@@ -23,5 +23,5 @@ public class ChessBoardTest {
         
         method.invoke(board);
         assertNotNull(board);
-    }   
+    }
 }

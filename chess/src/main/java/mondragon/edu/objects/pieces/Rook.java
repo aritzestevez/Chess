@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Rook extends Piece {
 
-    final static String BLACKROOK = "\u265C";
-    final static String WHITEROOK = "\u2656";
+    static final String BLACKROOK = "\u265C";
+    static final String WHITEROOK = "\u2656";
 
     public Rook(Position pos, Color color) {
         super(pos, color);
@@ -39,10 +39,8 @@ public class Rook extends Piece {
 
         // Check the destination square for capturing
         Piece destinationPiece = board[newPosition.getX()][newPosition.getY()];
-        if (destinationPiece == null) {
+        if (destinationPiece == null || destinationPiece.getColor() != this.getColor()) {
             return true; // The destination is empty, move is valid.
-        } else if (destinationPiece.getColor() != this.getColor()) {
-            return true; // The destination has an opponent's piece, capture is valid.
         }
 
         return false; // The destination has a piece of the same color, move is invalid.
