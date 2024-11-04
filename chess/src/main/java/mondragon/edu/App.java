@@ -44,7 +44,12 @@ public class App
 					break;
 				case 2:
 					piece = choosePiece();
-					movePiece(piece);
+					if (piece != null) {
+						movePiece(piece);
+					} else {
+						System.out.println("No piece was selected. Please choose a valid piece.");
+						// You may also want to prompt the user to try again or handle this case differently
+					}
 					break;
 				case 0:
 					break;
