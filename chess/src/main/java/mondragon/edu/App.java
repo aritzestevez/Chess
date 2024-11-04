@@ -89,7 +89,6 @@ public class App
 
 	public static void main( String[] args )
     {
-        App program = new App();
-		program.run();
+        System.out.println("Hello");
     }
 }
