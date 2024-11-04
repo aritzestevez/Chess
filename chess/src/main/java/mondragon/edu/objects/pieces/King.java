@@ -8,6 +8,8 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 
 public class King extends Piece {
+    final static String BLACKKING = "\u265A";
+    final static String WHITEKING = "\u2654";
 
     public King(Position pos, Color color) {
         super(pos, color);
@@ -33,7 +35,14 @@ public class King extends Piece {
         return destinationPiece == null || destinationPiece.getColor() != this.getColor();
     }
     
-
+    @Override
+    public String toString() {
+        if (this.color == Color.BLACK){
+            return BLACKKING;
+        }else{
+            return WHITEKING;
+        }
+    }
 
     
 }

@@ -6,6 +6,9 @@ import mondragon.edu.objects.Position;
 
 public class Rook extends Piece {
 
+    final static String BLACKROOK = "\u265C";
+    final static String WHITEROOK = "\u2656";
+
     public Rook(Position pos, Color color) {
         super(pos, color);
     }
@@ -43,5 +46,14 @@ public class Rook extends Piece {
         }
 
         return false; // The destination has a piece of the same color, move is invalid.
+    }
+
+    @Override
+    public String toString() {
+        if (this.color == Color.BLACK){
+            return BLACKROOK;
+        }else{
+            return WHITEROOK;
+        }
     }
 }

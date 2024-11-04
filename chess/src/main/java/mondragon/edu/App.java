@@ -15,6 +15,7 @@ public class App
 	public App() {
 		input = new Scanner(System.in);
 		chessBoard = new ChessBoard();
+		chessBoard
 	}
 
 
@@ -83,7 +84,7 @@ public class App
 	}
 
 	private void showChessboard(ChessBoard chessBoard) {
-		throw new UnsupportedOperationException("Unimplemented method 'showChessboard'");
+		System.out.println(chessBoard);
 	}
 
 	public static void main( String[] args )

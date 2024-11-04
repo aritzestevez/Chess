@@ -5,6 +5,9 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 
 public class Bishop extends Piece {
+
+    final static String BLACKBISHOP = "\u265D";
+    final static String WHITEBISHOP = "\u2657";
     
     public Bishop(Position position, Color color) {
         super(position, color);
@@ -39,5 +42,14 @@ public class Bishop extends Piece {
         }
 
         return false; // The destination has a piece of the same color, move is invalid.
+    }
+
+    @Override
+    public String toString() {
+        if (this.color == Color.BLACK){
+            return BLACKBISHOP;
+        }else{
+            return WHITEBISHOP;
+        }
     }
 }
