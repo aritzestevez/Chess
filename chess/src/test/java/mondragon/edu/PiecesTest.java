@@ -1,15 +1,9 @@
 package mondragon.edu;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-
-import java.nio.file.WatchEvent.Kind;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import mondragon.edu.objects.Color;
-import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 import mondragon.edu.objects.pieces.Bishop;
 import mondragon.edu.objects.pieces.King;
@@ -31,7 +25,7 @@ public class PiecesTest {
     public void testBishopGetSet(){
         Bishop bishop = new Bishop(position, Color.BLACK);
         assertEquals(bishop.getPosition(), position);
-        assertEquals(bishop.getColor(),Color.BLACK);
+        assertEquals(Color.BLACK,bishop.getColor());
         bishop.setColor(Color.WHITE);
 
     }
@@ -39,19 +33,19 @@ public class PiecesTest {
     public void testKingGetSet(){
         King king = new King(position, Color.BLACK);
         assertEquals(king.getPosition(), position);
-        assertEquals(king.getColor(),Color.BLACK);
+        assertEquals(Color.BLACK,king.getColor());
     }
     @Test
     public void testKnightGetSet(){
         Knight knight = new Knight(position, Color.BLACK);
         assertEquals(knight.getPosition(), position);
-        assertEquals(knight.getColor(),Color.BLACK);
+        assertEquals(Color.BLACK,knight.getColor());
     }
     @Test
     public void testPawnGetSet(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         assertEquals(pawn.getPosition(), position);
-        assertEquals(pawn.getColor(),Color.BLACK);
+        assertEquals(Color.BLACK,pawn.getColor());
     }
     /* @Test
     public void testPawnValidMovement(){
@@ -62,23 +56,19 @@ public class PiecesTest {
     public void testQueenGetSet(){
         Queen queen = new Queen(position, Color.BLACK);
         assertEquals(queen.getPosition(), position);
-        assertEquals(queen.getColor(),Color.BLACK);
+        assertEquals(Color.BLACK,queen.getColor());
     }
     @Test
     public void testRookGetSet(){
 
         Rook rook = new Rook(position, Color.BLACK);
         assertEquals(rook.getPosition(), position);
-        assertEquals(rook.getColor(),Color.BLACK);
+        assertEquals(Color.BLACK,rook.getColor());
     }
     @Test
     public void testPosition(){
         Rook rook = new Rook(position, null);
         rook.setPosition(new Position(1, 1));
-    }
-    @Test 
-    public  void testToString(){
-        Rook rook = new Rook(position, null);
-        rook.toString();
+        assertEquals(new Position(1, 1), rook.getPosition());
     }
 }

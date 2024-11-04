@@ -20,16 +20,15 @@ public class PositionTest {
     public void testGet(){
         int x = position.getX();
         int y = position.getY();
-        assertEquals(x,0);
-        assertEquals(y,0);
+        assertEquals(0,x);
+        assertEquals(0,y);
     }
 
     @Test
     public void testSet(){
-        int x, y;
         position.setX(1);
         position.setY(1);
-        assertEquals(position.getX(),1);
-        assertEquals(position.getY(),1);
+        assertEquals(1,position.getX());
+        assertEquals(1,position.getY());
     }
 }

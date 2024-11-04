@@ -10,5 +10,11 @@ public class Pawn extends Piece {
         super(position, color);
     }
 
+    @Override
+    public boolean isValidMove(Position newPosition, Piece[][] board) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isValidMove'");
+    }
+
     
 }

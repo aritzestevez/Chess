@@ -9,5 +9,11 @@ public class Queen extends Piece{
     public Queen(Position pos, Color color) {
         super(pos, color);
     }
+
+    @Override
+    public boolean isValidMove(Position newPosition, Piece[][] board) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isValidMove'");
+    }
     
 }

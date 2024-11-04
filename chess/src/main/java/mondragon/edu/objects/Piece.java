@@ -18,15 +18,8 @@ public abstract class Piece {
     public void setColor(Color color) {
         this.color = color;
     }
-
-
-
-    @Override
-    public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
-    }
-
+    
+    public abstract boolean isValidMove(Position newPosition, Piece[][] board);
 
     public Position getPosition() {
         return position;
@@ -36,7 +29,5 @@ public abstract class Piece {
     public void setPosition(Position position) {
         this.position = position;
     }
-
-
 
 }
