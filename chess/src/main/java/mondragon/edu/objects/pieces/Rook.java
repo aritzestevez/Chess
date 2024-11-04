@@ -6,14 +6,42 @@ import mondragon.edu.objects.Position;
 
 public class Rook extends Piece {
 
-    public Rook (Position pos, Color color) {
+    public Rook(Position pos, Color color) {
         super(pos, color);
     }
 
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isValidMove'");
+        // Rooks can move vertically or horizontally any number of squares.
+        // They cannot jump over pieces.
+        if (position.getX() == newPosition.getX()) {
+            int columnStart = Math.min(position.getY(), newPosition.getY()) + 1;
+            int columnEnd = Math.max(position.getY(), newPosition.getY());
+            for (int column = columnStart; column < columnEnd; column++) {
+                if (board[position.getX()][column] != null) {
+                    return false; // There's a piece in the way
+                }
+            }
+        } else if (position.getY() == newPosition.getY()) {
+            int rowStart = Math.min(position.getX(), newPosition.getX()) + 1;
+            int rowEnd = Math.max(position.getX(), newPosition.getX());
+            for (int row = rowStart; row < rowEnd; row++) {
+                if (board[row][position.getY()] != null) {
+                    return false; // There's a piece in the way
+                }
+            }
+        } else {
+            return false; // Not a valid rook move (not straight line)
+        }
+
+        // Check the destination square for capturing
+        Piece destinationPiece = board[newPosition.getX()][newPosition.getY()];
+        if (destinationPiece == null) {
+            return true; // The destination is empty, move is valid.
+        } else if (destinationPiece.getColor() != this.getColor()) {
+            return true; // The destination has an opponent's piece, capture is valid.
+        }
+
+        return false; // The destination has a piece of the same color, move is invalid.
     }
-    
 }
