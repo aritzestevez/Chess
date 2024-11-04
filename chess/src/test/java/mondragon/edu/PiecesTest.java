@@ -69,6 +69,6 @@ public class PiecesTest {
     public void testPosition(){
         Rook rook = new Rook(position, null);
         rook.setPosition(new Position(1, 1));
-        assertEquals(new Position(1, 1), rook.getPosition());
-    }
+        assertEquals(1, rook.getPosition().getX());
+        assertEquals(1, rook.getPosition().getY());    }
 }
