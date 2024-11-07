@@ -59,7 +59,9 @@ public class ChessBoard {
                     sb.append("  "); // Dos espacios para casillas vacías
                 }
             }
-            sb.append("\n"); // Nueva línea después de cada fila
+            if (row < 7) {
+                sb.append(System.lineSeparator());
+            }
         }
         return sb.toString();
     }
