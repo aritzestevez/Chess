@@ -31,10 +31,10 @@ public class ChessBoardTest {
         ChessBoard Chessboard = new ChessBoard();
         String result = "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ \r\n" + //
                 "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ \r\n" + //
-                "\r\n" + //
-                "\r\n" + //
-                "\r\n" + //
-                "\r\n" + //
+                "                \r\n" + //
+                "                \r\n" + //
+                "                \r\n" + //
+                "                \r\n" + //
                 "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ \r\n" + //
                 "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ \r\n";
         assertEquals(result, Chessboard.toString());
