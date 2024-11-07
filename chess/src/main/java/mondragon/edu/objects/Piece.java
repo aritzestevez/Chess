@@ -1,7 +1,5 @@
 package mondragon.edu.objects;
 
-import java.util.Scanner;
-
 public abstract class Piece {
 
     public Position position;
