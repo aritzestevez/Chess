@@ -25,7 +25,6 @@ public class BishopTest {
 
     Position position;
     Piece[][] board;
-    Method movePiece;
 
     @Before
     public void setup() throws Exception{
@@ -34,9 +33,6 @@ public class BishopTest {
         Field boardField = ChessBoard.class.getDeclaredField("board");
         boardField.setAccessible(true);
         board = (Piece[][]) boardField.get(chessBoard);
-        movePiece = App.class.getDeclaredMethod("movePiece",Piece.class);
-        movePiece.setAccessible(true);
-
     }
     
     @Test
