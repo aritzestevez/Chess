@@ -11,8 +11,7 @@ import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
-import mondragon.edu.objects.pieces.Bishop;
-import mondragon.edu.objects.pieces.Rook;
+import mondragon.edu.objects.pieces.*;
 
 public class RookTest {
     Position position;
@@ -47,25 +46,61 @@ public class RookTest {
 
     @Test
     public void testRookPieceInTheWay() throws Exception {
-        Position newPos = new Position(0, 1);
-        ChessBoard chessBoard = new ChessBoard();
-        Field boardField = ChessBoard.class.getDeclaredField("board");
-        boardField.setAccessible(true);
-        Piece[][] board = (Piece[][]) boardField.get(chessBoard);
-        Rook rook = (Rook) board[0][0];
-        assertEquals(false, rook.isValidMove(newPos, board));
+        Position rookMove = new Position(0, 0);
+        Position piece = new Position(0, 4);
+        Position move = new Position(0, 6);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(rookMove, Color.WHITE);
+        King pieceRand = new King(piece, Color.WHITE);
+        chessBoard[0][0] = rook;
+        chessBoard[0][4] = pieceRand;
+        assertEquals(false, rook.isValidMove(move, chessBoard));
+    }
+
+    @Test
+    public void testRookPieceInTheWay2() throws Exception {
+        Position rookMove = new Position(0, 0);
+        Position piece = new Position(4, 0);
+        Position move = new Position(6, 0);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(rookMove, Color.WHITE);
+        King pieceRand = new King(piece, Color.WHITE);
+        chessBoard[0][0] = rook;
+        chessBoard[4][0] = pieceRand;
+        assertEquals(false, rook.isValidMove(move, chessBoard));
     }
 
     @Test
     public void testRookValidMoving() throws Exception {
-        Position pawnMove1 = new Position(1, 3);
-        Position rookMove1 = new Position(0, 2);
-        ChessBoard chessBoard = new ChessBoard();
-        Field boardField = ChessBoard.class.getDeclaredField("board");
-        boardField.setAccessible(true);
-        Piece[][] board = (Piece[][]) boardField.get(chessBoard);
-        Rook rook = (Rook) board[0][0];
-        assertEquals(false, rook.isValidMove(newPos, board));
+        Position rookMove1 = new Position(1, 0);
+        Position init = new Position(0, 0);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(init, null);
+        chessBoard[0][0] = rook;
+        assertEquals(true, rook.isValidMove(rookMove1, chessBoard));
+    }
+    
+
+    @Test
+    public void testRookValidEating() throws Exception {
+        Position eatRook2 = new Position(4, 0);
+        Position init = new Position(0, 0);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(init, Color.WHITE);
+        Rook rook2 = new Rook(eatRook2, Color.BLACK);
+        chessBoard[0][0] = rook;
+        chessBoard[4][0] = rook2;
+        assertEquals(true, rook.isValidMove(eatRook2, chessBoard));
+    }
+
+    @Test
+    public void testRookInvalidDiagonal() {
+        Position init = new Position(0, 0);
+        Position diagonal = new Position(2, 2);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(init, Color.WHITE);
+        chessBoard[0][0] = rook;
+        assertEquals(false, rook.isValidMove(diagonal, chessBoard));
     }
 
 }
