@@ -45,7 +45,7 @@ public class App
 				case 2:
 					piece = choosePiece();
 					if (piece != null) {
-						piece.movePiece(chessBoard);
+						movePiece(chessBoard, piece);
 					} else {
 						System.out.println("No piece was selected. Please choose a valid piece.");
 						// You may also want to prompt the user to try again or handle this case differently
@@ -59,7 +59,19 @@ public class App
 		} while (option != 0);
 	}
 
-    
+    private void movePiece(ChessBoard chessBoard, Piece piece){
+
+		System.out.print("New row position: ");
+		int row = input.nextInt();
+
+		System.out.print("New col position: ");
+		int col = input.nextInt();
+
+		Position pos = new Position(row, col);
+
+		piece.movePiece(chessBoard,pos);
+
+	}
 
 	private Piece choosePiece() {
 		int i = 1;

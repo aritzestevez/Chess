@@ -13,22 +13,15 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public void movePiece(ChessBoard chessBoard) {
-        Scanner input = new Scanner(System.in);
-		System.out.print("New row position: ");
-		int row = input.nextInt();
-
-		System.out.print("New col position: ");
-		int col = input.nextInt();
-
-		Position pos = new Position(row, col);
+    public void movePiece(ChessBoard chessBoard, Position pos) {
+        
 
 		if (this.isValidMove(pos,chessBoard.getChessboard())) {
 			// Update chessboard
 			Position currentPos = this.getPosition();
 			Piece[][] cb = chessBoard.getChessboard();
 			cb[currentPos.getX()][currentPos.getY()] = null;
-			cb[row][col] = this;
+			cb[pos.getX()][pos.getY()] = this;
 
 			// Update piece
 			this.setPosition(pos);
