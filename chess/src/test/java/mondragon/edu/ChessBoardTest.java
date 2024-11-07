@@ -26,7 +26,7 @@ public class ChessBoardTest {
     }
 
     @Test
-    public void testVisualizePieces() throws Exception {
+    public void testVisualizePieces(){
         ChessBoard chessBoard = new ChessBoard();
         String newChessboard = String.join(System.lineSeparator(),
                 "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ",

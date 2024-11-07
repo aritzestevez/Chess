@@ -25,7 +25,7 @@ public class AppTest extends EasyMockSupport{
         app = new App();
     }
 
-    public String runProgram(String input) throws Exception {
+    public String runProgram(String input) {
         System.setIn(new ByteArrayInputStream(input.getBytes()));
         System.setOut(ps);
         app.main(null);
