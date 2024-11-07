@@ -1,6 +1,8 @@
 package mondragon.edu.pieces;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -16,6 +18,7 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 import mondragon.edu.objects.pieces.Bishop;
 import mondragon.edu.objects.pieces.Pawn;
+import mondragon.edu.objects.pieces.Queen;
 import net.bytebuddy.matcher.MethodOverrideMatcher;
 
 public class BishopTest {
@@ -52,22 +55,68 @@ public class BishopTest {
         assertEquals(false, bishop.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test
-    public void testBishopPieceInTheWay() throws Exception{
-        Position newPos = new Position(2, 0);
+    public void testMoveToSamePosition() {
+        Piece piece = new Bishop(new Position(2, 0), Color.WHITE); // Create a Bishop piece at (2, 0)
+        Piece[][] board = new Piece[8][8];
+        board[2][0] = piece;
 
-        Bishop bishop = (Bishop) board[0][2];
-        assertEquals(false, bishop.isValidMove(newPos, board));
+        // Try to move the piece to the same position (2, 0)
+        boolean result = piece.isValidMove(new Position(2, 0), board);
+
+        // Assert that the move is invalid (should return false)
+        assertFalse(result);
     }
+
     @Test
-    public void testBishopValidMove() throws Exception, Throwable{
-        Position newPos = new Position(2, 0);
-        ChessBoard chessBoard = new ChessBoard();
+    public void testValidDiagonalMove() {
+        Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[2][0] = piece;
 
-        Pawn pawn = (Pawn) board[1][1];
-        
-        Bishop bishop = (Bishop) board[0][2];
-        
+        // Move diagonally
+        assertTrue(piece.isValidMove(new Position(0, 2), board));
+    }
 
-        assertEquals(true, bishop.isValidMove(newPos, board));
+    @Test
+    public void testBlockedPathDiagonal() {
+        Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
+        Piece blockingPiece = new Pawn(new Position(1, 1), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[2][0] = piece;
+        board[1][1] = blockingPiece; // Blocking piece in the diagonal path
+
+        assertFalse(piece.isValidMove(new Position(0, 2), board));
+    }
+
+    @Test
+    public void testCaptureOpponentPiece() {
+        Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
+        Piece opponentPiece = new Pawn(new Position(0, 2), Color.BLACK);
+        Piece[][] board = new Piece[8][8];
+        board[2][0] = piece;
+        board[0][2] = opponentPiece; // Opponent's piece at destination
+
+        assertTrue(piece.isValidMove(new Position(0, 2), board));
+    }
+
+    @Test
+    public void testCaptureSameColorPiece() {
+        Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
+        Piece opponentPiece = new Pawn(new Position(0, 2), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[2][0] = piece;
+        board[0][2] = opponentPiece; // Opponent's piece at destination
+
+        assertFalse(piece.isValidMove(new Position(0, 2), board));
+    }
+
+    @Test
+    public void testInvalidNonDiagonalMove() {
+        Piece piece = new Bishop(new Position(4, 4), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+
+        // Try an invalid straight move, which is not allowed
+        assertFalse(piece.isValidMove(new Position(4, 5), board));
     }
 }
