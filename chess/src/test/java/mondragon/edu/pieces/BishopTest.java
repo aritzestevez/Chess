@@ -66,6 +66,7 @@ public class BishopTest {
         Pawn pawn = (Pawn) board[1][1];
         
         Bishop bishop = (Bishop) board[0][2];
+        
 
         assertEquals(true, bishop.isValidMove(newPos, board));
     }
