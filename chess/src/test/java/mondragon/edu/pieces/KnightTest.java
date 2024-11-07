@@ -39,7 +39,7 @@ public class KnightTest {
     }
     @Test
     public void testMoveToSamePosition() {
-        Piece piece = new Knight(new Position(2, 0), Color.WHITE); // Create a Bishop piece at (2, 0)
+        Piece piece = new Knight(new Position(2, 0), Color.WHITE); // Create a Knight piece at (2, 0)
         Piece[][] board = new Piece[8][8];
         board[2][0] = piece;
 
@@ -56,7 +56,7 @@ public class KnightTest {
         Piece[][] board = new Piece[8][8];
         board[2][0] = piece;
 
-        // Move diagonally
+        // Move in L
         assertTrue(piece.isValidMove(new Position(1, 2), board));
     }
 
