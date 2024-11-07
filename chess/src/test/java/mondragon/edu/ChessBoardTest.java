@@ -21,22 +21,23 @@ public class ChessBoardTest {
     public void testInitializePieces() throws Exception {
         Method method = ChessBoard.class.getDeclaredMethod("initializePieces");
         method.setAccessible(true);
-
         method.invoke(board);
         assertNotNull(board);
     }
 
     @Test
     public void testVisualizePieces() throws Exception {
-        ChessBoard Chessboard = new ChessBoard();
-        String result = "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ \r\n" + //
-                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ \r\n" + //
-                "                \r\n" + //
-                "                \r\n" + //
-                "                \r\n" + //
-                "                \r\n" + //
-                "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ \r\n" + //
-                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ \r\n";
-        assertEquals(result, Chessboard.toString());
+        ChessBoard chessBoard = new ChessBoard();
+        String newChessboard = String.join(System.lineSeparator(),
+                "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ",
+                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ",
+                "                ",
+                "                ",
+                "                ",
+                "                ",
+                "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ ",
+                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ");
+        assertEquals(newChessboard, chessBoard.toString());
     }
+
 }
