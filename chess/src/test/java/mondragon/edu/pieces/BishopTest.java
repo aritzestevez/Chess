@@ -18,8 +18,6 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 import mondragon.edu.objects.pieces.Bishop;
 import mondragon.edu.objects.pieces.Pawn;
-import mondragon.edu.objects.pieces.Queen;
-import net.bytebuddy.matcher.MethodOverrideMatcher;
 
 public class BishopTest {
 

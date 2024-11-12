@@ -2,8 +2,6 @@ package mondragon.edu.pieces;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Field;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,7 +43,7 @@ public class RookTest {
     }
 
     @Test
-    public void testRookPieceInTheWay() throws Exception {
+    public void testRookPieceInTheWay() {
         Position rookMove = new Position(0, 0);
         Position piece = new Position(0, 4);
         Position move = new Position(0, 6);
@@ -58,7 +56,7 @@ public class RookTest {
     }
 
     @Test
-    public void testRookPieceInTheWay2() throws Exception {
+    public void testRookPieceInTheWay2() {
         Position rookMove = new Position(0, 0);
         Position piece = new Position(4, 0);
         Position move = new Position(6, 0);
@@ -71,7 +69,7 @@ public class RookTest {
     }
 
     @Test
-    public void testRookValidMoving() throws Exception {
+    public void testRookValidMoving() {
         Position rookMove1 = new Position(1, 0);
         Position init = new Position(0, 0);
         Piece[][] chessBoard = new Piece[8][8];
@@ -82,7 +80,7 @@ public class RookTest {
     
 
     @Test
-    public void testRookValidEating() throws Exception {
+    public void testRookValidEating() {
         Position eatRook2 = new Position(4, 0);
         Position init = new Position(0, 0);
         Piece[][] chessBoard = new Piece[8][8];
