@@ -12,6 +12,7 @@ import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 import mondragon.edu.objects.pieces.Pawn;
 import mondragon.edu.objects.pieces.Queen;
+import mondragon.edu.objects.pieces.Rook;
 
 public class QueenTest {
     Position position;
@@ -30,14 +31,14 @@ public class QueenTest {
 
     @Test
     public void testMoveToSamePosition() {
-        Piece piece = new Queen(new Position(4, 4), Color.WHITE); // Create a Queen piece at (4, 4)
-        Piece[][] board = new Piece[8][8];
-        board[4][4] = piece;
+        Position initialPosition = new Position(3, 3); // Assume this represents row 3, column 3
+        Queen queen = new Queen(initialPosition, Color.WHITE);
+        Piece[][] board = new Piece[8][8]; // Create an empty 8x8 chess board
 
-        // Try to move the piece to the same position (4, 4)
-        boolean result = piece.isValidMove(new Position(4, 4), board);
+        // Act
+        boolean result = queen.isValidMove(initialPosition, board);
 
-        // Assert that the move is invalid (should return false)
+        // Assert
         assertFalse(result);
     }
 
@@ -82,6 +83,23 @@ public class QueenTest {
 
         assertFalse(piece.isValidMove(new Position(6, 6), board));
     }
+
+    @Test
+    public void testBlockedPathHorizontal() {
+        // Arrange
+        Position initialPosition = new Position(3, 3);
+        Queen queen = new Queen(initialPosition, Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+
+        // Place a blocking piece in the horizontal path
+        board[3][5] = new Rook(new Position(3, 5), Color.BLACK); // Assume Rook class exists
+
+        // Act
+        boolean result = queen.isValidMove(new Position(3, 7), board); // Horizontal move to (3, 7)
+
+        // Assert
+        assertFalse(result);
+    } 
 
     @Test
     public void testCaptureOpponentPiece() {
