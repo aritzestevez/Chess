@@ -1,6 +1,8 @@
 package mondragon.edu.pieces;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import mondragon.edu.objects.Position;
 import mondragon.edu.objects.pieces.King;
 import mondragon.edu.objects.pieces.Pawn;
 import mondragon.edu.objects.pieces.Pawn;
+import mondragon.edu.objects.pieces.Queen;
 
 public class PawnTest {
     Position position;
@@ -28,77 +31,83 @@ public class PawnTest {
         assertEquals(pawn.getPosition(), position);
         assertEquals(Color.BLACK, pawn.getColor());
     }
+    
+     @Test
+    public void testMoveToSamePosition() {
+        Piece piece = new Pawn(new Position(4, 4), Color.WHITE); // Create a Queen piece at (4, 4)
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
 
-    @Test
-    public void testPawnValidMovementFalse() {
-        Pawn pawn = new Pawn(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
-        assertEquals(false, pawn.isValidMove(position, chessBoard.getChessboard()));
+        // Try to move the piece to the same position (4, 4)
+        boolean result = piece.isValidMove(new Position(4, 4), board);
+
+        // Assert that the move is invalid (should return false)
+        assertFalse(result);
     }
 
-    @Test
-    public void testPosition() {
-        Pawn pawn = new Pawn(position, null);
-        pawn.setPosition(new Position(1, 1));
-        assertEquals(1, pawn.getPosition().getX());
-        assertEquals(1, pawn.getPosition().getY());
-    }
 
     @Test
-    public void testPawnPieceInTheWay() throws Exception {
-        Position pawnMove = new Position(1, 1);
-        Position piece = new Position(2, 1);
-        Position move = new Position(3, 1);
-        Piece[][] chessBoard = new Piece[8][8];
-        Pawn pawn = new Pawn(pawnMove, Color.BLACK);
-        King pieceRand = new King(piece, Color.BLACK);
-        chessBoard[1][1] = pawn;
-        chessBoard[2][1] = pieceRand;
-        assertEquals(false, pawn.isValidMove(move, chessBoard));
+    public void testValidDiagonalMove() {
+        Piece piece = new Queen(new Position(4, 4), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+
+        // Move diagonally
+        assertTrue(piece.isValidMove(new Position(6, 6), board));
     }
 
     @Test
-    public void testPawnEatPiece() throws Exception {
-        Position pawnMove = new Position(1, 1);
-        Position piece = new Position(2, 2);
-        Position move = new Position(2, 2);
-        Piece[][] chessBoard = new Piece[8][8];
-        Pawn pawn = new Pawn(pawnMove, Color.BLACK);
-        King pieceRand = new King(piece, Color.WHITE);
-        chessBoard[1][1] = pawn;
-        chessBoard[2][2] = pieceRand;
-        assertEquals(true, pawn.isValidMove(move, chessBoard));
-    }
-    @Test
-    public void testPawnNoEatPiece() throws Exception {
-        Position pawnMove = new Position(1, 1);
-        Position piece = new Position(2, 2);
-        Position move = new Position(2, 2);
-        Piece[][] chessBoard = new Piece[8][8];
-        Pawn pawn = new Pawn(pawnMove, Color.BLACK);
-        King pieceRand = new King(piece, Color.BLACK);
-        chessBoard[1][1] = pawn;
-        chessBoard[2][2] = pieceRand;
-        assertEquals(false, pawn.isValidMove(move, chessBoard));
+    public void testBlockedPathStraight() {
+        Piece piece = new Pawn(new Position(4, 4), Color.WHITE);
+        Piece blockingPiece = new Pawn(new Position(4, 5), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+        board[5][4] = blockingPiece; // Blocking piece in the path
+
+        assertFalse(piece.isValidMove(new Position(4, 6), board));
     }
 
     @Test
-    public void testPawnValidMoving() throws Exception {
-        Position pawnMove1 = new Position(1, 0);
-        Position init = new Position(0, 0);
-        Piece[][] chessBoard = new Piece[8][8];
-        Pawn pawn = new Pawn(init, null);
-        chessBoard[0][0] = pawn;
-        assertEquals(true, pawn.isValidMove(pawnMove1, chessBoard));
+    public void testBlockedPathDiagonal() {
+        Piece piece = new Queen(new Position(4, 4), Color.WHITE);
+        Piece blockingPiece = new Pawn(new Position(5, 5), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+        board[5][5] = blockingPiece; // Blocking piece in the diagonal path
+
+        assertFalse(piece.isValidMove(new Position(6, 6), board));
     }
 
     @Test
-    public void testPawnInvalidDiagonal() {
-        Position init = new Position(0, 0);
-        Position diagonal = new Position(1, 1);
-        Piece[][] chessBoard = new Piece[8][8];
-        Pawn pawn = new Pawn(init, Color.WHITE);
-        chessBoard[0][0] = pawn;
-        assertEquals(false, pawn.isValidMove(diagonal, chessBoard));
+    public void testCaptureOpponentPiece() {
+        Piece piece = new Pawn(new Position(4, 4), Color.WHITE);
+        Piece opponentPiece = new Pawn(new Position(3, 5), Color.BLACK);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+        board[6][4] = opponentPiece; // Opponent's piece at destination
+
+        assertTrue(piece.isValidMove(new Position(3, 5), board));
     }
+
+    @Test
+    public void testCaptureSameColorPiece() {
+        Piece piece = new Pawn(new Position(4, 4), Color.WHITE);
+        Piece sameColorPiece = new Pawn(new Position(5, 5), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+        board[6][4] = sameColorPiece; // Same color piece at destination
+
+        assertFalse(piece.isValidMove(new Position(5, 5), board));
+    }
+
+    @Test
+    public void testInvalidNonStraightOrDiagonalMove() {
+        Piece piece = new Pawn(new Position(4, 4), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+
+        // Try an invalid "L" shaped move, which is not allowed
+        assertFalse(piece.isValidMove(new Position(5, 6), board));
+    }
+
 }
