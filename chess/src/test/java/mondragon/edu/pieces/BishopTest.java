@@ -62,7 +62,7 @@ public class BishopTest {
     }
 
     @Test
-    public void testValidDiagonalMove() {
+    public void testValidDiagonalMoveLeft() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
         Piece[][] boardDiagonal = new Piece[8][8];
         boardDiagonal[2][0] = piece;
@@ -70,7 +70,15 @@ public class BishopTest {
         // Move diagonally
         assertTrue(piece.isValidMove(new Position(0, 2), boardDiagonal));
     }
+    @Test
+    public void testValidDiagonalMoveRight() {
+        Piece piece = new Bishop(new Position(0, 2), Color.WHITE);
+        Piece[][] boardDiagonal = new Piece[8][8];
+        boardDiagonal[0][2] = piece;
 
+        // Move diagonally
+        assertTrue(piece.isValidMove(new Position(2, 0), boardDiagonal));
+    }
     @Test
     public void testBlockedPathDiagonal() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
