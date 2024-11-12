@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import mondragon.edu.objects.ChessBoard;
+import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
+import mondragon.edu.objects.pieces.King;
 
 public class App 
 {
@@ -69,7 +71,7 @@ public class App
 
 		Position pos = new Position(row, col);
 
-		piece.movePiece(chessBoard,pos);
+		piece.movePiece(chessBoard,pos);//hacer un try out of bounds
 
 	}
 
@@ -106,7 +108,6 @@ public class App
 	private void showChessboard(ChessBoard chessBoard) {
 		System.out.println(chessBoard);
 	}
-
 
 	public static void main( String[] args )
     {
