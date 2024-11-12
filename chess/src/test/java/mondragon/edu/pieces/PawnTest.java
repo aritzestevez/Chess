@@ -67,15 +67,55 @@ public class PawnTest {
         assertEquals(false, pawn.isValidMove(new Position(1, 1), chessBoard));
     }
     @Test
+    public void testPawnValidEatingFalseNoPiece(){
+        Pawn pawn = new Pawn(position, Color.BLACK);
+        Piece[][] chessBoard = new Piece[8][8];
+        assertEquals(false, pawn.isValidMove(new Position(1, 1), chessBoard));
+    }
+    @Test
     public void testPawnValidMovementTrueNoPiece(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(true, pawn.isValidMove(position2, chessBoard));
     }
     @Test
-    public void testPawnValidInitMovementTrue(){
+    public void testPawnValidInitTrueBlack(){
         Pawn pawn = new Pawn(position2, Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(true, pawn.isValidMove(new Position(3, 0), chessBoard));
+    }
+    @Test
+    public void testPawnValidInitFalseBlack(){
+        Pawn pawn = new Pawn(new Position(3, 0), Color.BLACK);
+        Piece[][] chessBoard = new Piece[8][8];
+        assertEquals(false, pawn.isValidMove(new Position(5, 0), chessBoard));
+    }
+    @Test
+    public void testPawnValidInitTrueWhite(){
+        Pawn pawn = new Pawn(new Position(6, 0), Color.WHITE);
+        Piece[][] chessBoard = new Piece[8][8];
+        assertEquals(true, pawn.isValidMove(new Position(4, 0), chessBoard));
+    }
+    @Test
+    public void testPawnValidInitFalseWhite(){
+        Pawn pawn = new Pawn(new Position(5, 0), Color.WHITE);
+        Piece[][] chessBoard = new Piece[8][8];
+        assertEquals(false, pawn.isValidMove(new Position(3, 0), chessBoard));
+    }
+    @Test
+    public void testPawnValidInitFalse(){
+        Pawn pawn = new Pawn(new Position(6, 0), Color.WHITE);
+        Pawn pawn2 = new Pawn(new Position(4, 0), Color.WHITE);
+        Piece[][] chessBoard = new Piece[8][8];
+        chessBoard[4][0] = pawn2;
+        assertEquals(false, pawn.isValidMove(new Position(4, 0), chessBoard));
+    }
+    @Test
+    public void testPawnValidInitFalseMiddle(){
+        Pawn pawn = new Pawn(new Position(6, 0), Color.WHITE);
+        Pawn pawn2 = new Pawn(new Position(5, 0), Color.WHITE);
+        Piece[][] chessBoard = new Piece[8][8];
+        chessBoard[5][0] = pawn2;
+        assertEquals(false, pawn.isValidMove(new Position(4, 0), chessBoard));
     }
 }

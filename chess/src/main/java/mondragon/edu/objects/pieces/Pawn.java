@@ -25,9 +25,13 @@ public class Pawn extends Piece {
         }
 
         // Initial two-square move
-        boolean isStartingPosition = (color == Color.WHITE && position.getX() == 6) ||
-                (color == Color.BLACK && position.getX() == 1);
-        if (colDiff == 0 && rowDiff == 2 && isStartingPosition
+        boolean isStartingPosition = (color == Color.WHITE 
+        && position.getX() == 6) ||
+                (color == Color.BLACK && 
+                position.getX() == 1);
+        if (colDiff == 0 && 
+        rowDiff == 2 
+        && isStartingPosition
                 && board[newPosition.getX()][newPosition.getY()] == null) {
             // Check the square in between for blocking pieces
             int middleRow = position.getX() + forwardDirection;
