@@ -22,6 +22,7 @@ public class App
 
     public int menu() {
 		int option;
+		System.out.println(chessBoard);
 		System.out.println("\n1.- Show chessboard");
 		System.out.println("2.- Move a piece");
 		System.out.println("0.- Exit");
