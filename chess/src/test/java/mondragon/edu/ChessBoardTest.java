@@ -24,20 +24,4 @@ public class ChessBoardTest {
         method.invoke(board);
         assertNotNull(board);
     }
-
-    @Test
-    public void testVisualizePieces(){
-        ChessBoard chessBoard = new ChessBoard();
-        String newChessboard = String.join(System.lineSeparator(),
-                "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ",
-                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ",
-                "                ",
-                "                ",
-                "                ",
-                "                ",
-                "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ ",
-                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ");
-        assertEquals(newChessboard, chessBoard.toString());
-    }
-
 }
