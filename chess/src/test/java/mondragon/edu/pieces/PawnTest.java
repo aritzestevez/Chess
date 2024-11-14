@@ -29,20 +29,21 @@ public class PawnTest {
 
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testPawnGetSet(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         assertEquals(pawn.getPosition(), position);
         assertEquals(Color.BLACK,pawn.getColor());
     }
     
-    @Test
+    @Test(timeout = 3000)
     public void testPawnValidMovementFalseSamePos(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(false, pawn.isValidMove(position, chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidMovementFalsePieceInPos(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Pawn pawn2 = new Pawn(position2, Color.WHITE);
@@ -50,7 +51,8 @@ public class PawnTest {
         chessBoard[1][0] = pawn2;
         assertEquals(false, pawn.isValidMove(position2, chessBoard));
     }
-    @Test
+    
+    @Test(timeout = 3000)
     public void testPawnValidEatingTruePieceInPos(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Pawn pawn2 = new Pawn(new Position(1, 1), Color.WHITE);
@@ -58,7 +60,8 @@ public class PawnTest {
         chessBoard[1][1] = pawn2;
         assertEquals(true, pawn.isValidMove(new Position(1, 1), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidEatingFalseSameColor(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Pawn pawn2 = new Pawn(new Position(1, 1), Color.BLACK);
@@ -66,43 +69,50 @@ public class PawnTest {
         chessBoard[1][1] = pawn2;
         assertEquals(false, pawn.isValidMove(new Position(1, 1), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidEatingFalseNoPiece(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(false, pawn.isValidMove(new Position(1, 1), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidMovementTrueNoPiece(){
         Pawn pawn = new Pawn(position, Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(true, pawn.isValidMove(position2, chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidInitTrueBlack(){
         Pawn pawn = new Pawn(position2, Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(true, pawn.isValidMove(new Position(3, 0), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidInitFalseBlack(){
         Pawn pawn = new Pawn(new Position(3, 0), Color.BLACK);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(false, pawn.isValidMove(new Position(5, 0), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidInitTrueWhite(){
         Pawn pawn = new Pawn(new Position(6, 0), Color.WHITE);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(true, pawn.isValidMove(new Position(4, 0), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidInitFalseWhite(){
         Pawn pawn = new Pawn(new Position(5, 0), Color.WHITE);
         Piece[][] chessBoard = new Piece[8][8];
         assertEquals(false, pawn.isValidMove(new Position(3, 0), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidInitFalse(){
         Pawn pawn = new Pawn(new Position(6, 0), Color.WHITE);
         Pawn pawn2 = new Pawn(new Position(4, 0), Color.WHITE);
@@ -110,7 +120,8 @@ public class PawnTest {
         chessBoard[4][0] = pawn2;
         assertEquals(false, pawn.isValidMove(new Position(4, 0), chessBoard));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testPawnValidInitFalseMiddle(){
         Pawn pawn = new Pawn(new Position(6, 0), Color.WHITE);
         Pawn pawn2 = new Pawn(new Position(5, 0), Color.WHITE);

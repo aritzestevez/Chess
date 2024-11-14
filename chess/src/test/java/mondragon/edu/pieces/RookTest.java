@@ -19,7 +19,7 @@ public class RookTest {
         position = new Position(0, 0);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testRookGetSet() {
 
         Rook rook = new Rook(position, Color.BLACK);
@@ -27,7 +27,7 @@ public class RookTest {
         assertEquals(Color.BLACK, rook.getColor());
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testPosition() {
         Rook rook = new Rook(position, null);
         rook.setPosition(new Position(1, 1));
@@ -35,7 +35,7 @@ public class RookTest {
         assertEquals(1, rook.getPosition().getY());
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testRookPieceInTheWay() {
         Position rookMove = new Position(0, 0);
         Position piece = new Position(0, 4);
@@ -48,7 +48,7 @@ public class RookTest {
         assertEquals(false, rook.isValidMove(move, chessBoard));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testRookPieceInTheWay2() {
         Position rookMove = new Position(0, 0);
         Position piece = new Position(4, 0);
@@ -61,7 +61,7 @@ public class RookTest {
         assertEquals(false, rook.isValidMove(move, chessBoard));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testRookValidMoving() {
         Position rookMove1 = new Position(1, 0);
         Position init = new Position(0, 0);
@@ -70,9 +70,8 @@ public class RookTest {
         chessBoard[0][0] = rook;
         assertEquals(true, rook.isValidMove(rookMove1, chessBoard));
     }
-    
 
-    @Test
+    @Test(timeout = 3000)
     public void testRookValidEating() {
         Position eatRook2 = new Position(4, 0);
         Position init = new Position(0, 0);
@@ -84,7 +83,7 @@ public class RookTest {
         assertEquals(true, rook.isValidMove(eatRook2, chessBoard));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testRookInvalidDiagonal() {
         Position init = new Position(0, 0);
         Position diagonal = new Position(2, 2);
