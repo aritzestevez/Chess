@@ -67,7 +67,7 @@ public class ChessBoard {
 		return false;
     }
 
-    private Position findKingPosition(Color color) {
+    public Position findKingPosition(Color color) {
         for (int row = 0; row < getChessboard().length; row++) {
             for (int col = 0; col < getChessboard()[row].length; col++) {
                 Piece piece = getPiece(row, col);
@@ -107,7 +107,7 @@ public class ChessBoard {
 
     }
 
-    private boolean isPositionOnBoard(Position position) {
+    public boolean isPositionOnBoard(Position position) {
         return position.getX() >= 0 && position.getX() < getChessboard().length &&
                 position.getY() >= 0 && position.getY() < getChessboard()[0].length;
 
