@@ -51,14 +51,14 @@ public class AppTest extends EasyMockSupport{
         runProgram("1\n0\n");
         ChessBoard chessBoard = new ChessBoard();
         String newChessboard = String.join(System.lineSeparator(),
-                "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ",
-                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ",
-                "                ",
-                "                ",
-                "                ",
-                "                ",
+                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ",
                 "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ ",
-                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ");
+                "                ",
+                "                ",
+                "                ",
+                "                ",
+                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ",
+                "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ");
         assertEquals(newChessboard, chessBoard.toString());
     }
 
