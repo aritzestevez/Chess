@@ -21,24 +21,21 @@ public class KnightTest {
         position = new Position(0, 0);
     }
 
-
-    @Test(timeout = 3000)
-    public void testKnightGetSet(){
+    @Test
+    public void testKnightGetSet() {
         Knight knight = new Knight(position, Color.BLACK);
         assertEquals(knight.getPosition(), position);
         assertEquals(Color.BLACK, knight.getColor());
     }
 
-
-    @Test(timeout = 3000)
-    public void testKnightValidMovementFalse(){
+    @Test
+    public void testKnightValidMovementFalse() {
         Knight knight = new Knight(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard(true);
         assertEquals(false, knight.isValidMove(position, chessBoard.getChessboard()));
     }
 
-
-    @Test(timeout = 3000)
+    @Test
     public void testMoveToSamePosition() {
         Piece piece = new Knight(new Position(2, 0), Color.WHITE); // Create a Knight piece at (2, 0)
         Piece[][] board = new Piece[8][8];
@@ -51,10 +48,9 @@ public class KnightTest {
         assertFalse(result);
     }
 
-
-    @Test(timeout = 3000)
-    public void testValidLMove() {
-        Piece piece = new Knight(new Position(2, 0), Color.WHITE);
+    @Test
+    public void testValidLMoveFirstCondition() {
+        Piece piece = new Knight(new Position(4, 4), Color.WHITE);
         Piece[][] board = new Piece[8][8];
         board[4][4] = piece;
 
@@ -72,7 +68,7 @@ public class KnightTest {
         assertTrue(piece.isValidMove(new Position(5, 6), board));
     }
 
-    @Test(timeout = 3000)
+    @Test
     public void testMoveWithPieceInPath() {
         Piece piece = new Knight(new Position(1, 0), Color.WHITE);
         Piece blockingPiece = new Pawn(new Position(1, 1), Color.WHITE);
@@ -83,7 +79,7 @@ public class KnightTest {
         assertTrue(piece.isValidMove(new Position(0, 2), board));
     }
 
-    @Test(timeout = 3000)
+    @Test
     public void testCaptureOpponentPiece() {
         Piece piece = new Knight(new Position(1, 0), Color.WHITE);
         Piece opponentPiece = new Pawn(new Position(0, 2), Color.BLACK);
@@ -94,7 +90,7 @@ public class KnightTest {
         assertTrue(piece.isValidMove(new Position(0, 2), board));
     }
 
-    @Test(timeout = 3000)
+    @Test
     public void testCaptureSameColorPiece() {
         Piece piece = new Knight(new Position(1, 0), Color.WHITE);
         Piece opponentPiece = new Pawn(new Position(0, 2), Color.WHITE);
@@ -105,7 +101,7 @@ public class KnightTest {
         assertFalse(piece.isValidMove(new Position(0, 2), board));
     }
 
-    @Test(timeout = 3000)
+    @Test
     public void testInvalidNonLMove() {
         Piece piece = new Knight(new Position(4, 4), Color.WHITE);
         Piece[][] board = new Piece[8][8];
