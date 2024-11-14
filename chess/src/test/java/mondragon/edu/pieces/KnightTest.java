@@ -11,10 +11,8 @@ import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
-import mondragon.edu.objects.pieces.Bishop;
 import mondragon.edu.objects.pieces.Knight;
 import mondragon.edu.objects.pieces.Pawn;
-import mondragon.edu.objects.pieces.Queen;
 
 public class KnightTest {
 
@@ -34,7 +32,7 @@ public class KnightTest {
     @Test
     public void testKnightValidMovementFalse(){
         Knight knight = new Knight(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = new ChessBoard(true);
         assertEquals(false, knight.isValidMove(position, chessBoard.getChessboard()));
     }
     @Test

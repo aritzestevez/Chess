@@ -10,8 +10,11 @@ import mondragon.edu.objects.pieces.Rook;
 public class ChessBoard {
     private Piece[][] board;
 
-    public ChessBoard() {
-        initializePieces();
+    public ChessBoard(boolean emptyBoard) {
+        this.board = new Piece[8][8];
+        if (!emptyBoard) {
+            initializePieces();
+        }
     }
 
     public Piece getPiece(int row, int column) {
@@ -61,10 +64,8 @@ public class ChessBoard {
 		for (int row = 0; row < getChessboard().length; row++) {
 			for (int col = 0; col < getChessboard()[row].length; col++) {
 				Piece piece = getPiece(row, col);
-				if (piece != null && piece.getColor() != kingcolor) {
-					if (piece.isValidMove(kingPosition, getChessboard())) {
-						return true; // An opposing piece can capture the king
-					}
+				if (piece != null && piece.getColor() != kingcolor && piece.isValidMove(kingPosition, getChessboard())) {
+                    return true; // An opposing piece can capture the king
 				}
 			}
 		}
@@ -80,14 +81,15 @@ public class ChessBoard {
                 }
             }
         }
-        throw new RuntimeException("King not found, which should never happen.");
-
+        throw new IllegalStateException("King not found, which should never happen.");
     }
+
 	public boolean isCheckmate(Color kingcolor) {
       if (!isInCheck(kingcolor)) {
           return false; // Not in check, so cannot be checkmate
       }
 
+      System.out.println(kingcolor+" King is checked");
       Position kingPosition = findKingPosition(kingcolor);
       King king = (King) getPiece(kingPosition.getX(), kingPosition.getY());
 
@@ -99,16 +101,13 @@ public class ChessBoard {
               }
               Position newPosition = new Position(kingPosition.getX() + rowOffset,
                       kingPosition.getY() + colOffset);
-              // Check if moving the 2king to the new position is a legal move and does not
+              // Check if moving the king to the new position is a legal move and does not
               // result in a check
-              if (isPositionOnBoard(newPosition) && king.isValidMove(newPosition, getChessboard())
-                      && !wouldBeInCheckAfterMove(kingcolor, kingPosition, newPosition)) {
+              if (isPositionOnBoard(newPosition) && king.isValidMove(newPosition, getChessboard()) && !wouldBeInCheckAfterMove(kingcolor, kingPosition, newPosition)) {
                   return false; // Found a move that gets the king out of check, so it's not checkmate
               }
           }
       }
-      System.out.println("checkmate");
-
       return true; // No legal moves available to escape check, so it's checkmate
 
     }
@@ -121,16 +120,20 @@ public class ChessBoard {
 
 
     private boolean wouldBeInCheckAfterMove(Color kingColor, Position from, Position to) {
-        // Simulate the move temporarily
-        Piece temp = getPiece(to.getX(), to.getY());
-        setPiece(to.getX(), to.getY(),getPiece(from.getX(), from.getY()));
-        setPiece(from.getX(), from.getY(), null);
+        // Temporarily move the king to the target position 'to'
+        Piece movingPiece = getPiece(from.getX(), from.getY());
+        Piece targetPiece = getPiece(to.getX(), to.getY()); // The piece currently at 'to', if any
+        
+        // Simulate the move
+        setPiece(to.getX(), to.getY(), movingPiece); // Place the king at 'to'
+        setPiece(from.getX(), from.getY(), null);    // Vacate the original position 'from'
 
+        // Check if the king is in check after this move
         boolean inCheck = isInCheck(kingColor);
 
         // Undo the move
-        setPiece(from.getX(), from.getX(), getPiece(to.getX(), to.getY()));
-        setPiece(to.getY(), to.getY(), temp);
+        setPiece(from.getX(), from.getY(), movingPiece); // Restore the king back to 'from'
+        setPiece(to.getX(), to.getY(), targetPiece);     // Restore any captured piece at 'to'
 
         return inCheck;
 

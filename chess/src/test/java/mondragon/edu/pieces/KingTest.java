@@ -21,7 +21,7 @@ public class KingTest {
     Piece piece;
 
     @Before
-    public void setup() throws Exception {
+    public void setup(){
         position = new Position(0, 0);
         piece = new King(new Position(6, 3), Color.WHITE);
         board = new Piece[8][8];
@@ -38,7 +38,7 @@ public class KingTest {
     @Test
     public void testKingValidMovementFalse(){
         King king = new King(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = new ChessBoard(true);
         assertFalse(king.isValidMove(position, chessBoard.getChessboard()));
     }
 
