@@ -70,7 +70,7 @@ public class ChessBoard {
 			}
 		}
 		return false;
-  }
+    }
 
     private Position findKingPosition(Color color) {
         for (int row = 0; row < getChessboard().length; row++) {
@@ -85,30 +85,30 @@ public class ChessBoard {
     }
 
 	public boolean isCheckmate(Color kingcolor) {
-      if (!isInCheck(kingcolor)) {
+        if (!isInCheck(kingcolor)) {
           return false; // Not in check, so cannot be checkmate
-      }
+        }
 
-      System.out.println(kingcolor+" King is checked");
-      Position kingPosition = findKingPosition(kingcolor);
-      King king = (King) getPiece(kingPosition.getX(), kingPosition.getY());
+        System.out.println(kingcolor+" King is checked");
+        Position kingPosition = findKingPosition(kingcolor);
+        King king = (King) getPiece(kingPosition.getX(), kingPosition.getY());
 
-      // Attempt to find a move that gets the king out of check
-      for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
-          for (int colOffset = -1; colOffset <= 1; colOffset++) {
-              if (rowOffset == 0 && colOffset == 0) {
-                  continue; // Skip the current position of the king
-              }
-              Position newPosition = new Position(kingPosition.getX() + rowOffset,
-                      kingPosition.getY() + colOffset);
-              // Check if moving the king to the new position is a legal move and does not
-              // result in a check
-              if (isPositionOnBoard(newPosition) && king.isValidMove(newPosition, getChessboard()) && !wouldBeInCheckAfterMove(kingcolor, kingPosition, newPosition)) {
-                  return false; // Found a move that gets the king out of check, so it's not checkmate
-              }
-          }
-      }
-      return true; // No legal moves available to escape check, so it's checkmate
+        // Attempt to find a move that gets the king out of check
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++) {
+            for (int colOffset = -1; colOffset <= 1; colOffset++) {
+                if (rowOffset == 0 && colOffset == 0) {
+                    continue; // Skip the current position of the king
+                }
+                Position newPosition = new Position(kingPosition.getX() + rowOffset,
+                        kingPosition.getY() + colOffset);
+                // Check if moving the king to the new position is a legal move and does not
+                // result in a check
+                if (isPositionOnBoard(newPosition) && king.isValidMove(newPosition, getChessboard()) && !wouldBeInCheckAfterMove(kingcolor, kingPosition, newPosition)) {
+                    return false; // Found a move that gets the king out of check, so it's not checkmate
+                }
+            }
+        }
+        return true; // No legal moves available to escape check, so it's checkmate
 
     }
 
