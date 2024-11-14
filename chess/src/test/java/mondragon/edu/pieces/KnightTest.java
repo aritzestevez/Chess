@@ -1,8 +1,6 @@
 package mondragon.edu.pieces;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,32 +9,32 @@ import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
-import mondragon.edu.objects.pieces.Bishop;
 import mondragon.edu.objects.pieces.Knight;
 import mondragon.edu.objects.pieces.Pawn;
-import mondragon.edu.objects.pieces.Queen;
 
 public class KnightTest {
 
     Position position;
 
     @Before
-    public void setup(){
+    public void setup() {
         position = new Position(0, 0);
     }
 
     @Test
-    public void testKnightGetSet(){
+    public void testKnightGetSet() {
         Knight knight = new Knight(position, Color.BLACK);
         assertEquals(knight.getPosition(), position);
-        assertEquals(Color.BLACK,knight.getColor());
+        assertEquals(Color.BLACK, knight.getColor());
     }
+
     @Test
-    public void testKnightValidMovementFalse(){
+    public void testKnightValidMovementFalse() {
         Knight knight = new Knight(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard();
         assertEquals(false, knight.isValidMove(position, chessBoard.getChessboard()));
     }
+
     @Test
     public void testMoveToSamePosition() {
         Piece piece = new Knight(new Position(2, 0), Color.WHITE); // Create a Knight piece at (2, 0)
@@ -51,13 +49,23 @@ public class KnightTest {
     }
 
     @Test
-    public void testValidLMove() {
-        Piece piece = new Knight(new Position(2, 0), Color.WHITE);
+    public void testValidLMoveFirstCondition() {
+        Piece piece = new Knight(new Position(4, 4), Color.WHITE);
         Piece[][] board = new Piece[8][8];
-        board[2][0] = piece;
+        board[4][4] = piece;
 
-        // Move in L
-        assertTrue(piece.isValidMove(new Position(1, 2), board));
+        // Movimiento en "L" que cumple la primera condición (rowDiff = 2, colDiff = 1)
+        assertTrue(piece.isValidMove(new Position(6, 5), board));
+    }
+
+    @Test
+    public void testValidLMoveSecondCondition() {
+        Piece piece = new Knight(new Position(4, 4), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+
+        // Movimiento en "L" que cumple la segunda condición (rowDiff = 1, colDiff = 2)
+        assertTrue(piece.isValidMove(new Position(5, 6), board));
     }
 
     @Test
@@ -102,5 +110,14 @@ public class KnightTest {
         // Try an invalid "L" shaped move, which is not allowed
         assertFalse(piece.isValidMove(new Position(5, 5), board));
     }
-    
+    @Test
+    public void testInvalidNonLMove2() {
+        Piece piece = new Knight(new Position(4, 4), Color.WHITE);
+        Piece[][] board = new Piece[8][8];
+        board[4][4] = piece;
+
+        // Try an invalid "L" shaped move, which is not allowed
+        assertFalse(piece.isValidMove(new Position(2, 2), board));
+    }
+
 }

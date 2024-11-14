@@ -23,7 +23,10 @@ public class Knight extends Piece {
         int colDiff = Math.abs(this.position.getY() - newPosition.getY());
 
         // Check for the 'L' shaped move pattern
-        boolean isValidLMove = (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
+        boolean isValidLMove = (rowDiff == 2 
+        && colDiff == 1) 
+        || (rowDiff == 1
+         && colDiff == 2);
 
         if (!isValidLMove) {
             return false; // Not a valid knight move
