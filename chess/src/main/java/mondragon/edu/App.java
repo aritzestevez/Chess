@@ -84,8 +84,13 @@ public class App
 			return;
 		}
 		
-		movePiece(chessBoard, piece);
-		checkForCheckmate();
+		if (movePiece(chessBoard, piece)) {
+			checkForCheckmate();
+			changeColor();
+		}
+		
+	}
+	private void changeColor(){
 		if(playerColor == Color.BLACK){
 			playerColor = Color.WHITE;
 		}else{
@@ -104,7 +109,7 @@ public class App
 	}
 	
 
-    private void movePiece(ChessBoard chessBoard, Piece piece){
+    private boolean movePiece(ChessBoard chessBoard, Piece piece){
 
 		System.out.print("New row position: ");
 		int row = input.nextInt();
@@ -114,7 +119,7 @@ public class App
 
 		Position pos = new Position(row, col);
 
-		piece.movePiece(chessBoard,pos);//hacer un try out of bounds
+		return piece.movePiece(chessBoard,pos);//hacer un try out of bounds
 
 	}
 

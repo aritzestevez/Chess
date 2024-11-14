@@ -11,7 +11,7 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public void movePiece(ChessBoard chessBoard, Position pos) {
+    public boolean movePiece(ChessBoard chessBoard, Position pos) {
         
 
 		if (this.isValidMove(pos,chessBoard.getChessboard())) {
@@ -24,11 +24,11 @@ public abstract class Piece {
 			// Update piece
 			this.setPosition(pos);
 			System.out.println("New piece position: (" + this.getPosition().getX() + ", " + this.getPosition().getY() + ")");
-
-		}
-		else {
-			System.out.println("Invalid position");
-		}
+            return true;
+        }
+        System.out.println("Invalid position");
+        return false;
+		
 	}
 
     public Color getColor() {

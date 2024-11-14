@@ -7,6 +7,9 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Method;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 import org.easymock.EasyMockSupport;
 import org.hamcrest.CoreMatchers;
@@ -102,5 +105,22 @@ public class AppTest extends EasyMockSupport{
     public void testMenuOpt2InvalidPieceHighNumber(){
         String out = runProgram("2\n50\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));
+    }
+    @Test(timeout = 3000)
+    public void testChangeColor() throws Exception,Throwable{
+        // String out = runProgram("2\n2\n5\n1\n0\n");
+        Field field = App.class.getDeclaredField("playerColor");
+        field.setAccessible(true);
+        
+        Method method = App.class.getDeclaredMethod("changeColor");
+        method.setAccessible(true);
+
+        try {
+            method.invoke(app);
+        } catch (InvocationTargetException ex) {
+            throw ex.getCause(); // Rethrow inner exception
+        }
+        Color color = (Color) field.get(app);
+        assertEquals(color, Color.BLACK);
     }
 }
