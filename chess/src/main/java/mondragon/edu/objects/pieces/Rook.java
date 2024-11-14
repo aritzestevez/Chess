@@ -39,11 +39,7 @@ public class Rook extends Piece {
 
         // Check the destination square for capturing
         Piece destinationPiece = board[newPosition.getX()][newPosition.getY()];
-        if (destinationPiece == null || destinationPiece.getColor() != this.getColor()) {
-            return true; // The destination is empty, move is valid.
-        }
-
-        return false; // The destination has a piece of the same color, move is invalid.
+        return destinationPiece == null || destinationPiece.getColor() != this.getColor();
     }
 
     @Override
