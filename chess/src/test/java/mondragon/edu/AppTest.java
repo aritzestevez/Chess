@@ -73,7 +73,21 @@ public class AppTest extends EasyMockSupport{
     }
 
     @Test(timeout = 3000)
-    public void testMenuOpt2(){
+    public void testMenuOpt2ValidOption(){
+        String out = runProgram("2\n10\n2\n1\n0\n");
+
+        ChessBoard chessBoard = new ChessBoard(true);
+        Position position = new Position(6, 1);
+
+        Pawn pawn = new Pawn(new Position(6, 1), Color.WHITE);
+        pawn.movePiece(chessBoard, position);
+
+        assertThat(out, CoreMatchers.containsString("New piece position: (2, 1)"));
+        assertEquals(pawn.getPosition(), position);
+    }
+
+    @Test(timeout = 3000)
+    public void testMenuOpt2InvalidOption(){
         String out = runProgram("2\n10\n2\n1\n0\n");
 
         ChessBoard chessBoard = new ChessBoard(true);
