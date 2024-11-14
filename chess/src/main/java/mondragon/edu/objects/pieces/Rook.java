@@ -17,19 +17,19 @@ public class Rook extends Piece {
     public boolean isValidMove(Position newPosition, Piece[][] board) {
         // Rooks can move vertically or horizontally any number of squares.
         // They cannot jump over pieces.
-        if (position.getX() == newPosition.getX()) {
-            int columnStart = Math.min(position.getY(), newPosition.getY()) + 1;
-            int columnEnd = Math.max(position.getY(), newPosition.getY());
+        if (getPosition().getX() == newPosition.getX()) {
+            int columnStart = Math.min(getPosition().getY(), newPosition.getY()) + 1;
+            int columnEnd = Math.max(getPosition().getY(), newPosition.getY());
             for (int column = columnStart; column < columnEnd; column++) {
-                if (board[position.getX()][column] != null) {
+                if (board[getPosition().getX()][column] != null) {
                     return false; // There's a piece in the way
                 }
             }
-        } else if (position.getY() == newPosition.getY()) {
-            int rowStart = Math.min(position.getX(), newPosition.getX()) + 1;
-            int rowEnd = Math.max(position.getX(), newPosition.getX());
+        } else if (getPosition().getY() == newPosition.getY()) {
+            int rowStart = Math.min(getPosition().getX(), newPosition.getX()) + 1;
+            int rowEnd = Math.max(getPosition().getX(), newPosition.getX());
             for (int row = rowStart; row < rowEnd; row++) {
-                if (board[row][position.getY()] != null) {
+                if (board[row][getPosition().getY()] != null) {
                     return false; // There's a piece in the way
                 }
             }
@@ -44,7 +44,7 @@ public class Rook extends Piece {
 
     @Override
     public String toString() {
-        if (this.color == Color.BLACK) {
+        if (this.getColor() == Color.BLACK) {
             return BLACKROOK;
         } else {
             return WHITEROOK;

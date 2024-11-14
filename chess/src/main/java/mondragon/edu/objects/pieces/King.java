@@ -16,8 +16,8 @@ public class King extends Piece {
     
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
-        int rowDiff = Math.abs(position.getX() - newPosition.getX());
-        int colDiff = Math.abs(position.getY() - newPosition.getY());
+        int rowDiff = Math.abs(getPosition().getX() - newPosition.getX());
+        int colDiff = Math.abs(getPosition().getY() - newPosition.getY());
 
         // Kings can move one square in any direction.
         boolean isOneSquareMove = rowDiff <= 1 && colDiff <= 1 && !(rowDiff == 0 && colDiff == 0);
@@ -34,7 +34,7 @@ public class King extends Piece {
 
     @Override
     public String toString() {
-        if (this.color == Color.BLACK) {
+        if (this.getColor() == Color.BLACK) {
             return BLACKKING;
         } else {
             return WHITEKING;

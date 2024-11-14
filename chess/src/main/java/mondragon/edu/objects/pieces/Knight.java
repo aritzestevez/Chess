@@ -9,18 +9,18 @@ public class Knight extends Piece {
     static final String WHITEKNIGHT = "\u265E";
     static final String BLACKKNIGHT = "\u2658";
 
-    public Knight(Position position, Color color) {
-        super(position, color);
+    public Knight(Position pos, Color color) {
+        super(pos, color);
     }
 
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
-        if (newPosition.equals(this.position)) {
-            return false; // Cannot move to the same position
+        if (newPosition.equals(this.getPosition())) {
+            return false; // Cannot move to the same getPosition()
         }
 
-        int rowDiff = Math.abs(this.position.getX() - newPosition.getX());
-        int colDiff = Math.abs(this.position.getY() - newPosition.getY());
+        int rowDiff = Math.abs(this.getPosition().getX() - newPosition.getX());
+        int colDiff = Math.abs(this.getPosition().getY() - newPosition.getY());
 
         // Check for the 'L' shaped move pattern
         boolean isValidLMove = (rowDiff == 2 
@@ -44,7 +44,7 @@ public class Knight extends Piece {
 
     @Override
     public String toString() {
-        if (this.color == Color.BLACK){
+        if (this.getColor() == Color.BLACK){
             return BLACKKNIGHT;
         }else{
             return WHITEKNIGHT;

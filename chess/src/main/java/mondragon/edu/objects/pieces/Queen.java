@@ -15,17 +15,17 @@ public class Queen extends Piece {
 
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
-        // Check if the new position is the same as the current position
-        if (newPosition.equals(this.position)) {
+        // Check if the new getPosition() is the same as the current getPosition()
+        if (newPosition.equals(this.getPosition())) {
             return false;
         }
 
-        int rowDiff = Math.abs(newPosition.getX() - this.position.getX());
-        int colDiff = Math.abs(newPosition.getY() - this.position.getY());
+        int rowDiff = Math.abs(newPosition.getX() - this.getPosition().getX());
+        int colDiff = Math.abs(newPosition.getY() - this.getPosition().getY());
 
         // Check for straight line movement
-        boolean straightLine = this.position.getX() == newPosition.getX()
-                || this.position.getY() == newPosition.getY();
+        boolean straightLine = this.getPosition().getX() == newPosition.getX()
+                || this.getPosition().getY() == newPosition.getY();
 
         // Check for diagonal movement
         boolean diagonal = rowDiff == colDiff;
@@ -35,12 +35,12 @@ public class Queen extends Piece {
         }
 
         // Calculate direction of movement
-        int rowDirection = Integer.compare(newPosition.getX(), this.position.getX());
-        int colDirection = Integer.compare(newPosition.getY(), this.position.getY());
+        int rowDirection = Integer.compare(newPosition.getX(), this.getPosition().getX());
+        int colDirection = Integer.compare(newPosition.getY(), this.getPosition().getY());
 
         // Check for any pieces in the path
-        int currentRow = this.position.getX() + rowDirection;
-        int currentCol = this.position.getY() + colDirection;
+        int currentRow = this.getPosition().getX() + rowDirection;
+        int currentCol = this.getPosition().getY() + colDirection;
         while (currentRow != newPosition.getX() || currentCol != newPosition.getY()) {
             if (board[currentRow][currentCol] != null) {
                 return false; // Path is blocked
@@ -56,7 +56,7 @@ public class Queen extends Piece {
 
     @Override
     public String toString() {
-        if (this.color == Color.BLACK) {
+        if (this.getColor() == Color.BLACK) {
             return BLACKQUEEN;
         } else {
             return WHITEQUEEN;

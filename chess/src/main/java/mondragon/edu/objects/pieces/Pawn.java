@@ -9,15 +9,15 @@ public class Pawn extends Piece {
     static final String WHITEPAWN = "\u265F";
     static final String BLACKPAWN = "\u2659";
 
-    public Pawn(Position position, Color color) {
-        super(position, color);
+    public Pawn(Position pos, Color color) {
+        super(pos, color);
     }
 
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
-        int forwardDirection = color == Color.WHITE ? -1 : 1;
-        int rowDiff = (newPosition.getX() - position.getX()) * forwardDirection;
-        int colDiff = newPosition.getY() - position.getY();
+        int forwardDirection = this.getColor() == Color.WHITE ? -1 : 1;
+        int rowDiff = (newPosition.getX() - getPosition().getX()) * forwardDirection;
+        int colDiff = newPosition.getY() - getPosition().getY();
     
         // Forward move
         if (colDiff == 0 && rowDiff == 1 && board[newPosition.getX()][newPosition.getY()] == null) {
@@ -25,25 +25,25 @@ public class Pawn extends Piece {
         }
     
         // Initial two-square move
-        boolean isStartingPosition = (color == Color.WHITE && position.getX() == 6) ||
-                                     (color == Color.BLACK && position.getX() == 1);
+        boolean isStartingPosition = (this.getColor() == Color.WHITE && getPosition().getX() == 6) ||
+                                     (this.getColor() == Color.BLACK && getPosition().getX() == 1);
         if (colDiff == 0 && rowDiff == 2 && isStartingPosition &&
             board[newPosition.getX()][newPosition.getY()] == null) {
             // Check the square in between for blocking pieces
-            int middleRow = position.getX() + forwardDirection;
-            if (board[middleRow][position.getY()] == null) {
+            int middleRow = getPosition().getX() + forwardDirection;
+            if (board[middleRow][getPosition().getY()] == null) {
                 return true; // Move forward two squares
             }
         }
     
         return Math.abs(colDiff) == 1 && rowDiff == 1 && board[newPosition.getX()][newPosition.getY()] != null &&
-               board[newPosition.getX()][newPosition.getY()].color != this.color;
+               board[newPosition.getX()][newPosition.getY()].getColor() != this.getColor();
     }
     
 
     @Override
     public String toString() {
-        if (this.color == Color.BLACK){
+        if (this.getColor() == Color.BLACK){
             return BLACKPAWN;
         }else{
             return WHITEPAWN;
