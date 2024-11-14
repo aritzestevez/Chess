@@ -111,7 +111,7 @@ public class AppTest extends EasyMockSupport{
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));
     }
     @Test(timeout = 3000)
-    public void testChangeColor() throws Exception,Throwable{
+    public void testChangeColorWhiteToBlack() throws Exception,Throwable{
         // String out = runProgram("2\n2\n5\n1\n0\n");
         Field field = App.class.getDeclaredField("playerColor");
         field.setAccessible(true);
@@ -126,6 +126,25 @@ public class AppTest extends EasyMockSupport{
         }
         Color color = (Color) field.get(app);
         assertEquals(color, Color.BLACK);
+    }
+    @Test(timeout = 3000)
+    public void testChangeColorBlackToWhite() throws Exception,Throwable{
+        // String out = runProgram("2\n2\n5\n1\n0\n");
+        Field field = App.class.getDeclaredField("playerColor");
+        field.setAccessible(true);
+        field.set(app, Color.BLACK);
+
+        Method method = App.class.getDeclaredMethod("changeColor");
+        method.setAccessible(true);
+
+        try {
+            method.invoke(app);
+        } catch (InvocationTargetException ex) {
+            throw ex.getCause(); // Rethrow inner exception
+        }
+        Color color = (Color) field.get(app);
+        assertEquals(color, Color.WHITE);
+    }
 
     @Test(timeout = 3000)
     public void testGameOver() throws Exception {
