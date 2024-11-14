@@ -93,7 +93,7 @@ public class App
 		}
 	}
 	
-	private void checkForCheckmate() {
+	public void checkForCheckmate() {
 		if (chessBoard.isCheckmate(Color.BLACK)) {
 			System.out.println("Black is in checkmate! White wins!");
 			isGameOver = true;
