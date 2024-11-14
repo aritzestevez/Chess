@@ -12,6 +12,8 @@ public class King extends Piece {
         super(pos, color);
     }
 
+
+    
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
         int rowDiff = Math.abs(position.getX() - newPosition.getX());

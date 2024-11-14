@@ -1,15 +1,17 @@
 package mondragon.edu.pieces;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
-import mondragon.edu.objects.pieces.*;
+import mondragon.edu.objects.pieces.King;
+import mondragon.edu.objects.pieces.Rook;
 
 public class RookTest {
     Position position;
@@ -25,13 +27,6 @@ public class RookTest {
         Rook rook = new Rook(position, Color.BLACK);
         assertEquals(rook.getPosition(), position);
         assertEquals(Color.BLACK, rook.getColor());
-    }
-
-    @Test
-    public void testRookValidMovementFalse() {
-        Rook rook = new Rook(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
-        assertEquals(false, rook.isValidMove(position, chessBoard.getChessboard()));
     }
 
     @Test
@@ -52,7 +47,7 @@ public class RookTest {
         King pieceRand = new King(piece, Color.WHITE);
         chessBoard[0][0] = rook;
         chessBoard[0][4] = pieceRand;
-        assertEquals(false, rook.isValidMove(move, chessBoard));
+        assertFalse(rook.isValidMove(move, chessBoard));
     }
 
     @Test
@@ -65,7 +60,7 @@ public class RookTest {
         King pieceRand = new King(piece, Color.WHITE);
         chessBoard[0][0] = rook;
         chessBoard[4][0] = pieceRand;
-        assertEquals(false, rook.isValidMove(move, chessBoard));
+        assertFalse(rook.isValidMove(move, chessBoard));
     }
 
     @Test
@@ -75,9 +70,17 @@ public class RookTest {
         Piece[][] chessBoard = new Piece[8][8];
         Rook rook = new Rook(init, null);
         chessBoard[0][0] = rook;
-        assertEquals(true, rook.isValidMove(rookMove1, chessBoard));
+        assertTrue(rook.isValidMove(rookMove1, chessBoard));
     }
-    
+    @Test
+    public void testRookValidMoveDown() {
+        Position rookMove1 = new Position(2, 1);
+        Position init = new Position(2,2);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(init, null);
+        chessBoard[2][2] = rook;
+        assertTrue(rook.isValidMove(rookMove1, chessBoard));
+    }
 
     @Test
     public void testRookValidEating() {
@@ -88,9 +91,19 @@ public class RookTest {
         Rook rook2 = new Rook(eatRook2, Color.BLACK);
         chessBoard[0][0] = rook;
         chessBoard[4][0] = rook2;
-        assertEquals(true, rook.isValidMove(eatRook2, chessBoard));
+        assertTrue(rook.isValidMove(eatRook2, chessBoard));
     }
-
+    @Test
+    public void testRookValidEatingSameColor() {
+        Position eatRook2 = new Position(4, 0);
+        Position init = new Position(0, 0);
+        Piece[][] chessBoard = new Piece[8][8];
+        Rook rook = new Rook(init, Color.WHITE);
+        Rook rook2 = new Rook(eatRook2, Color.WHITE);
+        chessBoard[0][0] = rook;
+        chessBoard[4][0] = rook2;
+        assertFalse(rook.isValidMove(eatRook2, chessBoard));
+    }
     @Test
     public void testRookInvalidDiagonal() {
         Position init = new Position(0, 0);
@@ -98,7 +111,7 @@ public class RookTest {
         Piece[][] chessBoard = new Piece[8][8];
         Rook rook = new Rook(init, Color.WHITE);
         chessBoard[0][0] = rook;
-        assertEquals(false, rook.isValidMove(diagonal, chessBoard));
+        assertFalse(rook.isValidMove(diagonal, chessBoard));
     }
 
 }

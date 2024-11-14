@@ -21,11 +21,11 @@ public class KingTest {
     Piece piece;
 
     @Before
-    public void setup() throws Exception {
+    public void setup(){
         position = new Position(0, 0);
-        piece = new King(new Position(7, 4), Color.WHITE);
+        piece = new King(new Position(6, 3), Color.WHITE);
         board = new Piece[8][8];
-        board[4][4] = piece;
+        board[6][3] = piece;
     }
     
     @Test
@@ -38,51 +38,65 @@ public class KingTest {
     @Test
     public void testKingValidMovementFalse(){
         King king = new King(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
-        assertEquals(false, king.isValidMove(position, chessBoard.getChessboard()));
+        ChessBoard chessBoard = new ChessBoard(true);
+        assertFalse(king.isValidMove(position, chessBoard.getChessboard()));
     }
 
     @Test
     public void testMoveToSamePosition() {
-        boolean result = piece.isValidMove(new Position(7, 4), board);
-        assertFalse(result);
+        assertFalse(piece.isValidMove(new Position(6, 3), board));
     }
 
     @Test
     public void testValidStraightLineMove() {
-        assertTrue(piece.isValidMove(new Position(6, 4), board));
+        assertTrue(piece.isValidMove(new Position(5, 3), board));
     }
 
     @Test
-    public void testValidDiagonalMove() {
-        assertTrue(piece.isValidMove(new Position(6, 5), board));
+    public void testValidDiagonalMoveTopLeft() {
+        assertTrue(piece.isValidMove(new Position(5, 4), board));
     }
-
+    @Test
+    public void testValidDiagonalMoveTopRight() {
+        assertTrue(piece.isValidMove(new Position(7, 4), board));
+    }
+    @Test
+    public void testValidDiagonalMoveBottonLeft() {
+        assertTrue(piece.isValidMove(new Position(5, 4), board));
+    }
+    @Test
+    public void testValidDiagonalMoveBottonRight() {
+        assertTrue(piece.isValidMove(new Position(7, 2), board));
+    }
+    @Test
+    public void testNonDiagonalNonStraightMove() {
+        assertFalse(piece.isValidMove(new Position(5, 5), board));
+    }
     @Test
     public void testBlockedPathStraight() {
-        Piece blockingPiece = new Pawn(new Position(6, 4), Color.WHITE);
-        board[6][4] = blockingPiece;
-        assertFalse(piece.isValidMove(new Position(6, 4), board));
+        Piece blockingPiece = new Pawn(new Position(5, 3), Color.WHITE);
+        board[5][3] = blockingPiece;
+        assertFalse(piece.isValidMove(new Position(5, 3), board));
     }
 
     @Test
     public void testBlockedPathDiagonal() {
-        Piece blockingPiece = new Pawn(new Position(6, 5), Color.WHITE);
-        board[6][5] = blockingPiece;
-        assertFalse(piece.isValidMove(new Position(6, 5), board));
+        Piece blockingPiece = new Pawn(new Position(5, 4), Color.WHITE);
+        board[5][4] = blockingPiece;
+        assertFalse(piece.isValidMove(new Position(5, 4), board));
     }
 
     @Test
     public void testCaptureOpponentPiece() {
-        Piece opponentPiece = new Pawn(new Position(6, 4), Color.BLACK);
-        board[6][4] = opponentPiece;
-        assertTrue(piece.isValidMove(new Position(6, 4), board));
+        Piece opponentPiece = new Pawn(new Position(5, 3), Color.BLACK);
+        board[5][3] = opponentPiece;
+        assertTrue(piece.isValidMove(new Position(5, 3), board));
     }
 
     @Test
     public void testCaptureSameColorPiece() {
-        Piece sameColorPiece = new Pawn(new Position(6, 4), Color.WHITE);
-        board[6][4] = sameColorPiece;
-        assertFalse(piece.isValidMove(new Position(6, 4), board));
+        Piece sameColorPiece = new Pawn(new Position(5, 3), Color.WHITE);
+        board[5][3] = sameColorPiece;
+        assertFalse(piece.isValidMove(new Position(5, 3), board));
     }
 }

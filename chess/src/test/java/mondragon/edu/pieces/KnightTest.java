@@ -31,7 +31,7 @@ public class KnightTest {
     @Test
     public void testKnightValidMovementFalse() {
         Knight knight = new Knight(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = new ChessBoard(true);
         assertEquals(false, knight.isValidMove(position, chessBoard.getChessboard()));
     }
 

@@ -5,13 +5,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import mondragon.edu.App;
 import mondragon.edu.objects.ChessBoard;
 import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
@@ -27,7 +24,7 @@ public class BishopTest {
     @Before
     public void setup() throws Exception{
         position = new Position(0, 0);
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = new ChessBoard(true);
         Field boardField = ChessBoard.class.getDeclaredField("board");
         boardField.setAccessible(true);
         board = (Piece[][]) boardField.get(chessBoard);
@@ -41,13 +38,7 @@ public class BishopTest {
         bishop.setColor(Color.WHITE);
 
     }
-    @Test
-    public void testBishopValidMovementFalse(){
-        Bishop bishop = new Bishop(position, Color.BLACK);
-        ChessBoard chessBoard = new ChessBoard();
-        bishop.isValidMove(position,chessBoard.getChessboard());
-        assertEquals(false, bishop.isValidMove(position, chessBoard.getChessboard()));
-    }
+    
     @Test
     public void testMoveToSamePosition() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE); // Create a Bishop piece at (2, 0)
@@ -62,7 +53,7 @@ public class BishopTest {
     }
 
     @Test
-    public void testValidDiagonalMove() {
+    public void testValidDiagonalMoveLeft() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
         Piece[][] boardDiagonal = new Piece[8][8];
         boardDiagonal[2][0] = piece;
@@ -70,7 +61,15 @@ public class BishopTest {
         // Move diagonally
         assertTrue(piece.isValidMove(new Position(0, 2), boardDiagonal));
     }
+    @Test
+    public void testValidDiagonalMoveRight() {
+        Piece piece = new Bishop(new Position(0, 2), Color.WHITE);
+        Piece[][] boardDiagonal = new Piece[8][8];
+        boardDiagonal[0][2] = piece;
 
+        // Move diagonally
+        assertTrue(piece.isValidMove(new Position(2, 0), boardDiagonal));
+    }
     @Test
     public void testBlockedPathDiagonal() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);

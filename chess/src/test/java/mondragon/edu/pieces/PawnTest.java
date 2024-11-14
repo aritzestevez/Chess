@@ -22,7 +22,7 @@ public class PawnTest {
     public void setup() throws Exception{
         position = new Position(0, 0);
         position2 = new Position(1, 0);
-        ChessBoard chessBoard = new ChessBoard();
+        ChessBoard chessBoard = new ChessBoard(true);
         Field boardField = ChessBoard.class.getDeclaredField("board");
         boardField.setAccessible(true);
         board = (Piece[][]) boardField.get(chessBoard);

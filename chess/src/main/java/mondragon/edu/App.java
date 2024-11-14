@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import mondragon.edu.objects.ChessBoard;
+import mondragon.edu.objects.Color;
 import mondragon.edu.objects.Piece;
 import mondragon.edu.objects.Position;
 
@@ -13,15 +14,18 @@ public class App
 
     private Scanner input;
 	private ChessBoard chessBoard;
+    private boolean isGameOver;
 
 	public App() {
 		input = new Scanner(System.in);
-		chessBoard = new ChessBoard();
+		chessBoard = new ChessBoard(false);
+		isGameOver = false;
 	}
 
 
     public int menu() {
 		int option;
+		System.out.println(chessBoard);
 		System.out.println("\n1.- Show chessboard");
 		System.out.println("2.- Move a piece");
 		System.out.println("0.- Exit");
@@ -34,30 +38,64 @@ public class App
 
 	public void run() {
 		int option;
-		Piece piece;
-
 		do {
-			option = menu();
-			switch (option) {
-				case 1:
-					showChessboard(chessBoard);
-					break;
-				case 2:
-					piece = choosePiece();
-					if (piece != null) {
-						movePiece(chessBoard, piece);
-					} else {
-						System.out.println("No piece was selected. Please choose a valid piece.");
-						// You may also want to prompt the user to try again or handle this case differently
-					}
-					break;
-				case 0:
-					break;
-				default:
-					System.out.println("Invalid option");
+			if (isGameOver()) {
+				displayGameOverMessage();
+				return;
 			}
+			
+			option = menu();
+			handleMenuOption(option);
+			
 		} while (option != 0);
 	}
+	
+	private boolean isGameOver() {
+		return isGameOver;
+	}
+	
+	private void displayGameOverMessage() {
+		System.out.println("Game is over. Restart to play again.");
+	}
+	
+	private void handleMenuOption(int option) {
+		switch (option) {
+			case 1:
+				showChessboard(chessBoard);
+				break;
+			case 2:
+				processMove();
+				break;
+			case 0:
+				// Exit the game loop
+				break;
+			default:
+				System.out.println("Invalid option");
+				break;
+		}
+	}
+	
+	private void processMove() {
+		Piece piece = choosePiece();
+		if (piece == null) {
+			System.out.println("No valid piece selected. Please try again.");
+			return;
+		}
+		
+		movePiece(chessBoard, piece);
+		checkForCheckmate();
+	}
+	
+	private void checkForCheckmate() {
+		if (chessBoard.isCheckmate(Color.BLACK)) {
+			System.out.println("Black is in checkmate! White wins!");
+			isGameOver = true;
+		} else if (chessBoard.isCheckmate(Color.WHITE)) {
+			System.out.println("White is in checkmate! Black wins!");
+			isGameOver = true;
+		}
+	}
+	
 
     private void movePiece(ChessBoard chessBoard, Piece piece){
 
@@ -69,7 +107,7 @@ public class App
 
 		Position pos = new Position(row, col);
 
-		piece.movePiece(chessBoard,pos);
+		piece.movePiece(chessBoard,pos);//hacer un try out of bounds
 
 	}
 
@@ -106,7 +144,6 @@ public class App
 	private void showChessboard(ChessBoard chessBoard) {
 		System.out.println(chessBoard);
 	}
-
 
 	public static void main( String[] args )
     {
