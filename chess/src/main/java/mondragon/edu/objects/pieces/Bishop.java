@@ -35,10 +35,6 @@ public class Bishop extends Piece {
 
         // Check the destination square for capturing or moving to an empty square
         Piece destinationPiece = board[newPosition.getX()][newPosition.getY()];
-        /* if (destinationPiece == null || destinationPiece.getColor() != this.getColor()) {
-            return true; 
-        } */
-
         return destinationPiece == null || destinationPiece.getColor() != this.getColor();
     }
 
