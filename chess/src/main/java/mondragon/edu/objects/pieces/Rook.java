@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Rook extends Piece {
 
-    static final String BLACKROOK = "\u265C";
-    static final String WHITEROOK = "\u2656";
+    static final String WHITEROOK = "\u265C";
+    static final String BLACKROOK = "\u2656";
 
     public Rook(Position pos, Color color) {
         super(pos, color);

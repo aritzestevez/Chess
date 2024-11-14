@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Pawn extends Piece {
 
-    static final String BLACKPAWN = "\u265F";
-    static final String WHITEPAWN = "\u2659";
+    static final String WHITEPAWN = "\u265F";
+    static final String BLACKPAWN = "\u2659";
 
     public Pawn(Position position, Color color) {
         super(position, color);
