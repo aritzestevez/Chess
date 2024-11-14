@@ -16,7 +16,7 @@ public class PositionTest {
         position = new Position(0, 0);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testGet() {
         int x = position.getX();
         int y = position.getY();
@@ -24,7 +24,7 @@ public class PositionTest {
         assertEquals(0,y);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testSet(){
         position.setX(1);
         position.setY(1);

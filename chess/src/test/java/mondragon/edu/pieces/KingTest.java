@@ -28,72 +28,76 @@ public class KingTest {
         board[6][3] = piece;
     }
     
-    @Test
+    @Test(timeout = 3000)
     public void testKingGetSet(){
         King king = new King(position, Color.BLACK);
         assertEquals(king.getPosition(), position);
         assertEquals(Color.BLACK,king.getColor());
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testKingValidMovementFalse(){
         King king = new King(position, Color.BLACK);
         ChessBoard chessBoard = new ChessBoard(true);
         assertFalse(king.isValidMove(position, chessBoard.getChessboard()));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMoveToSamePosition() {
         assertFalse(piece.isValidMove(new Position(6, 3), board));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testValidStraightLineMove() {
         assertTrue(piece.isValidMove(new Position(5, 3), board));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testValidDiagonalMoveTopLeft() {
         assertTrue(piece.isValidMove(new Position(5, 4), board));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testValidDiagonalMoveTopRight() {
         assertTrue(piece.isValidMove(new Position(7, 4), board));
     }
-    @Test
+    @Test(timeout = 3000)
     public void testValidDiagonalMoveBottonLeft() {
         assertTrue(piece.isValidMove(new Position(5, 4), board));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testValidDiagonalMoveBottonRight() {
         assertTrue(piece.isValidMove(new Position(7, 2), board));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testNonDiagonalNonStraightMove() {
         assertFalse(piece.isValidMove(new Position(5, 5), board));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testBlockedPathStraight() {
         Piece blockingPiece = new Pawn(new Position(5, 3), Color.WHITE);
         board[5][3] = blockingPiece;
         assertFalse(piece.isValidMove(new Position(5, 3), board));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testBlockedPathDiagonal() {
         Piece blockingPiece = new Pawn(new Position(5, 4), Color.WHITE);
         board[5][4] = blockingPiece;
         assertFalse(piece.isValidMove(new Position(5, 4), board));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testCaptureOpponentPiece() {
         Piece opponentPiece = new Pawn(new Position(5, 3), Color.BLACK);
         board[5][3] = opponentPiece;
         assertTrue(piece.isValidMove(new Position(5, 3), board));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testCaptureSameColorPiece() {
         Piece sameColorPiece = new Pawn(new Position(5, 3), Color.WHITE);
         board[5][3] = sameColorPiece;

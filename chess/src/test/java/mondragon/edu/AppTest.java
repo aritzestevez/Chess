@@ -100,19 +100,19 @@ public class AppTest extends EasyMockSupport{
         assertEquals(pawn.getPosition(), position);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMenuOpt2InvalidMove(){
         String out = runProgram("2\n10\n1\n2\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid position"));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMenuOpt2InvalidPiece0(){
         String out = runProgram("2\n0\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMenuOpt2InvalidPieceHighNumber(){
         String out = runProgram("2\n50\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));

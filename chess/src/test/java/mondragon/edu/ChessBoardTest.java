@@ -29,7 +29,7 @@ public class ChessBoardTest {
         board = new ChessBoard(true);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testInitializePieces() throws Exception {
         Method method = ChessBoard.class.getDeclaredMethod("initializePieces");
         method.setAccessible(true);
@@ -37,7 +37,7 @@ public class ChessBoardTest {
         assertNotNull(board);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testIsInCheck() {
         board.setPiece(7, 4, new King(new Position(7, 4), Color.WHITE));
         board.setPiece(5, 4, new Rook(new Position(5, 4), Color.BLACK));
@@ -46,7 +46,7 @@ public class ChessBoardTest {
         assertFalse(board.isCheckmate(Color.WHITE));
     }
     
-    @Test
+    @Test(timeout = 3000)
     public void testIsCheckmate() {
         // Initialize pieces
         Piece pieceking = new King(new Position(6, 0), Color.WHITE);
@@ -71,7 +71,7 @@ public class ChessBoardTest {
         assertTrue(chessBoard.isCheckmate(Color.WHITE));
     }
     
-    @Test
+    @Test(timeout = 3000)
     public void testKingExists() {
         expectedException.expect(IllegalStateException.class);
         expectedException.expectMessage("King not found, which should never happen.");
@@ -93,7 +93,7 @@ public class ChessBoardTest {
         chessBoard.findKingPosition(Color.WHITE);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testIsPositionOnBoard() {
         ChessBoard chessBoard = new ChessBoard(true);
 
