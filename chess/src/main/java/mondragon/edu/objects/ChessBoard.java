@@ -1,11 +1,6 @@
 package mondragon.edu.objects;
 
-import mondragon.edu.objects.pieces.Bishop;
-import mondragon.edu.objects.pieces.King;
-import mondragon.edu.objects.pieces.Knight;
-import mondragon.edu.objects.pieces.Pawn;
-import mondragon.edu.objects.pieces.Queen;
-import mondragon.edu.objects.pieces.Rook;
+import mondragon.edu.objects.pieces.*;
 
 public class ChessBoard {
     private Piece[][] board;
