@@ -82,7 +82,7 @@ public class AppTest extends EasyMockSupport{
         String out = runProgram("2\n2\n5\n1\n0\n");
 
         ChessBoard chessBoard = new ChessBoard(true);
-        Position position = new Position(2, 1);
+        Position position = new Position(5, 1);
 
         Pawn pawn = new Pawn(new Position(6, 1), Color.WHITE);
         pawn.movePiece(chessBoard, position);
