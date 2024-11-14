@@ -15,11 +15,13 @@ public class App
     private Scanner input;
 	private ChessBoard chessBoard;
     private boolean isGameOver;
+	private Color playerColor;
 
 	public App() {
 		input = new Scanner(System.in);
 		chessBoard = new ChessBoard(false);
 		isGameOver = false;
+		playerColor = Color.WHITE;
 	}
 
 
@@ -65,6 +67,7 @@ public class App
 				break;
 			case 2:
 				processMove();
+
 				break;
 			case 0:
 				// Exit the game loop
@@ -84,6 +87,11 @@ public class App
 		
 		movePiece(chessBoard, piece);
 		checkForCheckmate();
+		if(playerColor == Color.BLACK){
+			playerColor = Color.WHITE;
+		}else{
+			playerColor = Color.BLACK;
+		}
 	}
 	
 	private void checkForCheckmate() {
@@ -120,7 +128,7 @@ public class App
 			for (int col = 0; col < cb[row].length; col++) {
 				Piece piece = cb[row][col];
 				
-				if (piece != null) {
+				if (piece != null && piece.getColor() == playerColor) {
 					System.out.println(i + ". " + piece.getColor() + " " + piece.getClass().getSimpleName() + " (" + row + ", " + col + ")");
 					piecePositions.add(new int[]{row, col});
 					i++;
