@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Knight extends Piece {
 
-    static final String BLACKKNIGHT = "\u265E";
-    static final String WHITEKNIGHT = "\u2658";
+    static final String WHITEKNIGHT = "\u265E";
+    static final String BLACKKNIGHT = "\u2658";
 
     public Knight(Position position, Color color) {
         super(position, color);
