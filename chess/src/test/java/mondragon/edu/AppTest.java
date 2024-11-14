@@ -1,16 +1,15 @@
 package mondragon.edu;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Method;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import org.easymock.EasyMockSupport;
 import org.hamcrest.CoreMatchers;
@@ -111,8 +110,7 @@ public class AppTest extends EasyMockSupport{
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));
     }
     @Test(timeout = 3000)
-    public void testChangeColorWhiteToBlack() throws Exception,Throwable{
-        // String out = runProgram("2\n2\n5\n1\n0\n");
+    public void testChangeColorWhiteToBlack() throws Throwable{
         Field field = App.class.getDeclaredField("playerColor");
         field.setAccessible(true);
         
@@ -125,11 +123,10 @@ public class AppTest extends EasyMockSupport{
             throw ex.getCause(); // Rethrow inner exception
         }
         Color color = (Color) field.get(app);
-        assertEquals(color, Color.BLACK);
+        assertEquals(Color.BLACK,color);
     }
     @Test(timeout = 3000)
-    public void testChangeColorBlackToWhite() throws Exception,Throwable{
-        // String out = runProgram("2\n2\n5\n1\n0\n");
+    public void testChangeColorBlackToWhite() throws Throwable{
         Field field = App.class.getDeclaredField("playerColor");
         field.setAccessible(true);
         field.set(app, Color.BLACK);
@@ -143,7 +140,7 @@ public class AppTest extends EasyMockSupport{
             throw ex.getCause(); // Rethrow inner exception
         }
         Color color = (Color) field.get(app);
-        assertEquals(color, Color.WHITE);
+        assertEquals(Color.WHITE,color);
     }
 
     @Test(timeout = 3000)
