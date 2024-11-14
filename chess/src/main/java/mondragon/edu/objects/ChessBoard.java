@@ -117,21 +117,20 @@ public class ChessBoard {
     private boolean wouldBeInCheckAfterMove(Color kingColor, Position from, Position to) {
         // Temporarily move the king to the target position 'to'
         Piece movingPiece = getPiece(from.getX(), from.getY());
-        Piece targetPiece = getPiece(to.getX(), to.getY()); // The piece currently at 'to', if any
+        Piece targetPiece = getPiece(to.getX(), to.getY());
         
         // Simulate the move
-        setPiece(to.getX(), to.getY(), movingPiece); // Place the king at 'to'
-        setPiece(from.getX(), from.getY(), null);    // Vacate the original position 'from'
+        setPiece(to.getX(), to.getY(), movingPiece);
+        setPiece(from.getX(), from.getY(), null);
 
         // Check if the king is in check after this move
         boolean inCheck = isInCheck(kingColor);
 
         // Undo the move
-        setPiece(from.getX(), from.getY(), movingPiece); // Restore the king back to 'from'
-        setPiece(to.getX(), to.getY(), targetPiece);     // Restore any captured piece at 'to'
+        setPiece(from.getX(), from.getY(), movingPiece);
+        setPiece(to.getX(), to.getY(), targetPiece);
 
         return inCheck;
-
     }
 
     public Piece[][] getChessboard() {
@@ -146,7 +145,7 @@ public class ChessBoard {
                 if (board[row][col] != null) {
                     sb.append(board[row][col].toString()).append(" ");
                 } else {
-                    sb.append("  "); // Dos espacios para casillas vacías
+                    sb.append("  ");
                 }
             }
             if (row < 7) {

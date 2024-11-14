@@ -119,7 +119,7 @@ public class App
 
 		Position pos = new Position(row, col);
 
-		return piece.movePiece(chessBoard,pos);//hacer un try out of bounds
+		return piece.movePiece(chessBoard,pos);
 
 	}
 

@@ -11,8 +11,6 @@ public class King extends Piece {
     public King(Position pos, Color color) {
         super(pos, color);
     }
-
-
     
     @Override
     public boolean isValidMove(Position newPosition, Piece[][] board) {
