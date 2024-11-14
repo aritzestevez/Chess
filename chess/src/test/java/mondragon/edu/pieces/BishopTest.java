@@ -30,7 +30,7 @@ public class BishopTest {
         board = (Piece[][]) boardField.get(chessBoard);
     }
     
-    @Test
+    @Test(timeout = 3000)
     public void testBishopGetSet(){
         Bishop bishop = new Bishop(position, Color.BLACK);
         assertEquals(bishop.getPosition(), position);
@@ -39,7 +39,7 @@ public class BishopTest {
 
     }
     
-    @Test
+    @Test(timeout = 3000)
     public void testMoveToSamePosition() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE); // Create a Bishop piece at (2, 0)
         Piece[][] boardSame = new Piece[8][8];
@@ -52,7 +52,7 @@ public class BishopTest {
         assertFalse(result);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testValidDiagonalMoveLeft() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
         Piece[][] boardDiagonal = new Piece[8][8];
@@ -61,7 +61,7 @@ public class BishopTest {
         // Move diagonally
         assertTrue(piece.isValidMove(new Position(0, 2), boardDiagonal));
     }
-    @Test
+    @Test(timeout = 3000)
     public void testValidDiagonalMoveRight() {
         Piece piece = new Bishop(new Position(0, 2), Color.WHITE);
         Piece[][] boardDiagonal = new Piece[8][8];
@@ -70,7 +70,8 @@ public class BishopTest {
         // Move diagonally
         assertTrue(piece.isValidMove(new Position(2, 0), boardDiagonal));
     }
-    @Test
+
+    @Test(timeout = 3000)
     public void testBlockedPathDiagonal() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
         Piece blockingPiece = new Pawn(new Position(1, 1), Color.WHITE);
@@ -81,7 +82,7 @@ public class BishopTest {
         assertFalse(piece.isValidMove(new Position(0, 2), boardBlocked));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testCaptureOpponentPiece() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
         Piece opponentPiece = new Pawn(new Position(0, 2), Color.BLACK);
@@ -92,7 +93,7 @@ public class BishopTest {
         assertTrue(piece.isValidMove(new Position(0, 2), boardOppo));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testCaptureSameColorPiece() {
         Piece piece = new Bishop(new Position(2, 0), Color.WHITE);
         Piece opponentPiece = new Pawn(new Position(0, 2), Color.WHITE);
@@ -103,7 +104,7 @@ public class BishopTest {
         assertFalse(piece.isValidMove(new Position(0, 2), boardSameColor));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testInvalidNonDiagonalMove() {
         Piece piece = new Bishop(new Position(4, 4), Color.WHITE);
         Piece[][] boardInvalid = new Piece[8][8];
