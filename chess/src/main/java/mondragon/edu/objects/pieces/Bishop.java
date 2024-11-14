@@ -6,8 +6,8 @@ import mondragon.edu.objects.Position;
 
 public class Bishop extends Piece {
 
-    static final String BLACKBISHOP = "\u265D";
-    static final String WHITEBISHOP = "\u2657";
+    static final String WHITEBISHOP = "\u265D";
+    static final String BLACKBISHOP = "\u2657";
     
     public Bishop(Position position, Color color) {
         super(position, color);
@@ -35,10 +35,6 @@ public class Bishop extends Piece {
 
         // Check the destination square for capturing or moving to an empty square
         Piece destinationPiece = board[newPosition.getX()][newPosition.getY()];
-        /* if (destinationPiece == null || destinationPiece.getColor() != this.getColor()) {
-            return true; 
-        } */
-
         return destinationPiece == null || destinationPiece.getColor() != this.getColor();
     }
 

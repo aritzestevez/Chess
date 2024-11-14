@@ -61,44 +61,44 @@ public class AppTest extends EasyMockSupport{
         runProgram("1\n0\n");
         ChessBoard chessBoard = new ChessBoard(false);
         String newChessboard = String.join(System.lineSeparator(),
-                "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ",
-                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ",
-                "                ",
-                "                ",
-                "                ",
-                "                ",
+                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ",
                 "♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ ",
-                "♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ ");
+                "                ",
+                "                ",
+                "                ",
+                "                ",
+                "♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ ",
+                "♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ");
         assertEquals(newChessboard, chessBoard.toString());
     }
 
     @Test(timeout = 3000)
-    public void testMenuOpt2(){
-        String out = runProgram("2\n10\n2\n1\n0\n");
+    public void testMenuOpt2ValidOption(){
+        String out = runProgram("2\n2\n5\n1\n0\n");
 
         ChessBoard chessBoard = new ChessBoard(true);
-        Position position = new Position(2, 1);
+        Position position = new Position(5, 1);
 
-        Pawn pawn = new Pawn(new Position(1, 1), Color.BLACK);
+        Pawn pawn = new Pawn(new Position(6, 1), Color.WHITE);
         pawn.movePiece(chessBoard, position);
 
-        assertThat(out, CoreMatchers.containsString("New piece position: (2, 1)"));
+        assertThat(out, CoreMatchers.containsString("New piece position: (5, 1)"));
         assertEquals(pawn.getPosition(), position);
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMenuOpt2InvalidMove(){
         String out = runProgram("2\n10\n1\n2\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid position"));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMenuOpt2InvalidPiece0(){
         String out = runProgram("2\n0\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));
     }
 
-    @Test
+    @Test(timeout = 3000)
     public void testMenuOpt2InvalidPieceHighNumber(){
         String out = runProgram("2\n50\n0\n");
         assertThat(out, CoreMatchers.containsString("Invalid selection. Please try again."));
